@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MonopolyKata
 {
@@ -10,17 +6,20 @@ namespace MonopolyKata
     {
 
         public readonly String Name;
-        public readonly int Position;
 
-        public Property(String nm, int pos)
+        public Property(String nm)
         {
             Name = nm;
-            Position = pos;
         }
 
-        public virtual void LandsOn(Player player)
+        public virtual void IsLandedOn(Player player)
         {
-            
+            //ToDo Later
+        }
+
+        public virtual void IsPassedBy(Player player)
+        {
+            //Overridden by go
         }
 
 

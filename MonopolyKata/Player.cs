@@ -1,28 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MonopolyKata
 {
     public class Player
     {
-        private Random rand = new Random();
-
-        public Player()
-        {
-            Position = 0;
-        }
-
+        public String Name { get; set; }
+        public int Money { get; set; }
         public int Position { get; set; }
 
-        public void Move(int x)
+
+        public Player(String name)
         {
-            Position += x;
-            Position %= 40;
+            Name = name;
+            Position = 0;
+            Money = 1500;
         }
-
-
+        public void Move(Board board, int distance)
+        {
+            for (int i = 1; i < distance; i++)
+            {
+                board.GetPropertyAt((Position + i)%40).IsPassedBy(this);
+            }
+            Position += distance;
+            Position %= 40;
+            board.GetPropertyAt(Position).IsLandedOn(this);
+        }
     }
 }
