@@ -13,6 +13,7 @@ namespace MonopolyKata
                 board[i] = new Property("Property " + i);
             }
             board[0] = new GoSquare();
+            board[4] = new IncomeTaxSquare();
             board[10] = new JailSquare();
             board[30] = new GoToJailSquare();
         }
