@@ -5,7 +5,7 @@ namespace MonopolyKata
     public class Property
     {
 
-        public readonly String Name;
+        public String Name;
 
         public Property(String nm)
         {
