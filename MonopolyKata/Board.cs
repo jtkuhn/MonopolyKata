@@ -3,10 +3,11 @@ namespace MonopolyKata
     public class Board
     {
         private Property[] board;
-        public int size;
+        public int Size { get; set; }
 
         public Board(int size = 40)
         {
+            Size = size;
             board  = new Property[size];
             for (int i = 0; i < size; i++)
             {

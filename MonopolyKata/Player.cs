@@ -15,14 +15,16 @@ namespace MonopolyKata
             Position = 0;
             Money = 1500;
         }
+
         public void Move(Board board, int distance)
         {
+            int size = board.Size;
             for (int i = 1; i < distance; i++)
             {
-                board.GetPropertyAt((Position + i)%40).IsPassedBy(this);
+                board.GetPropertyAt((Position + i)%size).IsPassedBy(this);
             }
             Position += distance;
-            Position %= 40;
+            Position %= size;
             board.GetPropertyAt(Position).IsLandedOn(this);
         }
     }
