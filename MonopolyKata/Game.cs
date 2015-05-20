@@ -9,7 +9,6 @@ namespace MonopolyKata
         private Random rand = new Random();
         private Realtor realtor;
 
-        private readonly int numPlayers;
         private readonly Board board;
         
         public Board Board
@@ -19,8 +18,7 @@ namespace MonopolyKata
         
         public Game(int numberOfPlayers)
         {
-            numPlayers = numberOfPlayers;
-            players = new Player[numPlayers];
+            players = new Player[numberOfPlayers];
             RandomlyOrderPlayers();
 
             BoardFactory bd = new BoardFactory();
@@ -39,7 +37,7 @@ namespace MonopolyKata
 
         private void RandomlyOrderPlayers()
         {
-            for (int j = 0; j < numPlayers; j++)
+            for (int j = 0; j < players.Length; j++)
             {
                 players[j] = new Player("Player " + j);
             }
