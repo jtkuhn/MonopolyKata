@@ -12,7 +12,7 @@ namespace UnitTestProject1
         [SetUp]
         public void Init()
         {
-            player1 = new Player("Joe");
+            player1 = new Player("Joe", new Board());
         }
         [Test]
         public void WhenPlayerWith1500LandsOnIncomeTax_MoneyDecreasesBy10Percent()

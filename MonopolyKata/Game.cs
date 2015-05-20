@@ -18,11 +18,11 @@ namespace MonopolyKata
         
         public Game(int numberOfPlayers)
         {
-            players = new Player[numberOfPlayers];
-            RandomlyOrderPlayers();
-
             BoardFactory bd = new BoardFactory();
             board = bd.Create();
+
+            players = new Player[numberOfPlayers];
+            RandomlyOrderPlayers(board);
         }
 
         public void PlayOneTurn()
@@ -31,15 +31,15 @@ namespace MonopolyKata
             {
                 int die1 = rand.Next(1, 7);
                 int die2 = rand.Next(1, 7);
-                currentPlayer.Move(board, die1 + die2);
+                currentPlayer.Move(die1 + die2);
             }
         }
 
-        private void RandomlyOrderPlayers()
+        private void RandomlyOrderPlayers(Board board)
         {
             for (int j = 0; j < players.Length; j++)
             {
-                players[j] = new Player("Player " + j);
+                players[j] = new Player("Player " + j, board);
             }
             Shuffle(players);
         }

@@ -18,7 +18,7 @@ namespace UnitTestProject1
             board = new Board();
             realtor = new Realtor(board);
             prop = board.GetPropertyAt(5);
-            player = new Player("Bob");
+            player = new Player("Bob", new Board());
         }
 
         [Test]
@@ -40,7 +40,7 @@ namespace UnitTestProject1
         {
             player = realtor.GetOwner(prop);
             Assert.Null(player);
-            Player player2 = new Player("Joe");
+            Player player2 = new Player("Joe", new Board());
             realtor.SetOwner(prop, player2);
             Assert.AreEqual(player2, realtor.GetOwner(prop));
         }

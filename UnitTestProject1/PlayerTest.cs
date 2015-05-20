@@ -16,7 +16,7 @@ namespace UnitTestProject1
         public void Init()
         {
             board = bd.Create();
-            player1 = new Player("Bob");
+            player1 = new Player("Bob", new Board());
         }
 
         [Test]
@@ -29,17 +29,17 @@ namespace UnitTestProject1
         [Test]
         public void PlayerMove_IncrementsPositionCorrectly()
         {
-            player1.Move(board, 2);
-            player1.Move(board, 7);
-            player1.Move(board, 5);
+            player1.Move(2);
+            player1.Move(7);
+            player1.Move(5);
             Assert.AreEqual(14, player1.Position);
         }
 
         [Test]
         public void PlayerMove_WrapsAroundAt40()
         {
-            player1.Move(board, 35);
-            player1.Move(board, 7);
+            player1.Move(35);
+            player1.Move(7);
             Assert.AreEqual(2, player1.Position);
         }
 
@@ -54,7 +54,7 @@ namespace UnitTestProject1
         public void WhenPlayerMovesPastGo_TheyGet200Dollars()
         {
             player1.Position = 30;
-            player1.Move(board, 20);
+            player1.Move(20);
             Assert.AreEqual(10, player1.Position);
             Assert.AreEqual(1700, player1.Money);
         }
