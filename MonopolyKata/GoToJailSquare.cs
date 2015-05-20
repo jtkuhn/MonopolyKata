@@ -1,14 +1,14 @@
 ﻿namespace MonopolyKata
 {
-    public class LuxuryTaxSquare : Property
+    public class GoToJailSquare : Property
     {
-        public LuxuryTaxSquare() : base("Luxury Tax")
+        public GoToJailSquare() : base("GoToJail")
         {
         }
 
         public override void IsLandedOn(Player player)
         {
-            player.Money -= 75;
+            player.Position = 10;
         }
     }
 }

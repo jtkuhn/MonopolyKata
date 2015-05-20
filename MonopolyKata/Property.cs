@@ -25,7 +25,5 @@ namespace MonopolyKata
         {
             //Overridden by go
         }
-
-
     }
 }
