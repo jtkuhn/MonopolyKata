@@ -7,8 +7,6 @@ namespace MonopolyKata
     {
         public Player[] players;
         private Random rand = new Random();
-        private Realtor realtor;
-
         private readonly Board board;
         
         public Board Board
@@ -36,7 +34,7 @@ namespace MonopolyKata
         }
 
         private void RandomlyOrderPlayers(Board board)
-        {
+        { 
             for (int j = 0; j < players.Length; j++)
             {
                 players[j] = new Player("Player " + j, board);
@@ -56,6 +54,5 @@ namespace MonopolyKata
                 list[n] = value;
             }
         }
-
     }
 }

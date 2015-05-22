@@ -4,8 +4,8 @@ namespace MonopolyKata
 {
     public class Property
     {
-
         public String Name;
+        public Player owner;
         public int cost;
         public int rent;
 
@@ -16,9 +16,23 @@ namespace MonopolyKata
             this.rent = rent;
         }
 
+        public void SetOwner(Player player)
+        {
+            owner = player;
+        }
+
         public virtual void IsLandedOn(Player player)
         {
-            //ToDo Later
+            if (owner != null)
+            {
+                player.Money -= rent;
+                owner.Money += rent;
+            }
+            else
+            {
+                player.Money -= cost;
+                owner = player;
+            }
         }
 
         public virtual void IsPassedBy(Player player)

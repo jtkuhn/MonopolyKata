@@ -19,14 +19,16 @@ namespace MonopolyKata
 
         public void Move(int distance)
         {
-            int size = board.Size;
             for (int i = 1; i < distance; i++)
             {
-                board.GetPropertyAt((Position + i)%size).IsPassedBy(this);
+                board.PlayerPassesBy(this, Position + i);
             }
-            Position += distance;
-            Position %= size;
-            board.GetPropertyAt(Position).IsLandedOn(this);
+            Position = board.PlayerLandsOn(this, Position + distance);
+        }
+
+        public int GetNumberOfRailroads()
+        {
+            return board.GetNumberOfRailroads(this);
         }
     }
 }
