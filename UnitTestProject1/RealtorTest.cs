@@ -25,24 +25,24 @@ namespace UnitTestProject1
         public void WhenRealtorIsInitialized_AllPropertyOwnersAreNull()
         {
             for (int i = 0; i < board.Size; i++)
-            Assert.Null(realtor.GetOwner(board.GetPropertyAt(i)));
+            Assert.Null(realtor.GetOwnerOf(board.GetPropertyAt(i)));
         }
 
         [Test]
         public void SetOwner_GivesThePropertyAnOwner()
         {
-            realtor.SetOwner(prop, player);
-            Assert.AreEqual(player, realtor.GetOwner(prop));
+            realtor.SetOwnerOf(prop, player);
+            Assert.AreEqual(player, realtor.GetOwnerOf(prop));
         }
 
         [Test]
         public void GetOwner_GetsThePropertyOwner()
         {
-            player = realtor.GetOwner(prop);
+            player = realtor.GetOwnerOf(prop);
             Assert.Null(player);
             Player player2 = new Player("Joe", new Board());
-            realtor.SetOwner(prop, player2);
-            Assert.AreEqual(player2, realtor.GetOwner(prop));
+            realtor.SetOwnerOf(prop, player2);
+            Assert.AreEqual(player2, realtor.GetOwnerOf(prop));
         }
     }
 }

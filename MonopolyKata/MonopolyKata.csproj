@@ -42,15 +42,16 @@
     <Compile Include="Board.cs" />
     <Compile Include="BoardFactory.cs" />
     <Compile Include="Game.cs" />
-    <Compile Include="SpecialProperties\GoSquare.cs" />
-    <Compile Include="SpecialProperties\GoToJailSquare.cs" />
-    <Compile Include="SpecialProperties\IncomeTaxSquare.cs" />
-    <Compile Include="SpecialProperties\JailSquare.cs" />
-    <Compile Include="SpecialProperties\LuxuryTaxSquare.cs" />
+    <Compile Include="PropertySquares\GoSquare.cs" />
+    <Compile Include="PropertySquares\GoToJailSquare.cs" />
+    <Compile Include="PropertySquares\IncomeTaxSquare.cs" />
+    <Compile Include="PropertySquares\JailSquare.cs" />
+    <Compile Include="PropertySquares\LuxuryTaxSquare.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Property.cs" />
+    <Compile Include="PropertySquares\Property.cs" />
     <Compile Include="Realtor.cs" />
+    <Compile Include="PropertySquares\RailroadSquare.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

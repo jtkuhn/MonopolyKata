@@ -10,29 +10,29 @@ namespace MonopolyKata
 
         public Realtor(Board board)
         {
-            propertyOwners = new Player[board.Size];
             this.board = board;
+            propertyOwners = new Player[board.Size];
             properties = new Property[board.Size];
             InitializeProperties();
         }
 
         private void InitializeProperties()
         {
-            for (int i = 0; i < board.Size; i++)
+            for (var i = 0; i < board.Size; i++)
             {
                 properties[i] = board.GetPropertyAt(i);
             }
         }
 
-        public void SetOwner(Property property, Player player)
+        public void SetOwnerOf(Property property, Player player)
         {
-            int location = Array.IndexOf(properties, property);
+            var location = Array.IndexOf(properties, property);
             propertyOwners[location] = player;
         }
 
-        public Player GetOwner(Property property)
+        public Player GetOwnerOf(Property property)
         {
-            int location = Array.IndexOf(properties, property);
+            var location = Array.IndexOf(properties, property);
             return propertyOwners[location];
         }
 

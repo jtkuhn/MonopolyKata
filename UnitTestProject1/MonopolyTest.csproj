@@ -72,6 +72,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="SpecialPropertiesTest\RailroadSquareTest.cs" />
     <Compile Include="SpecialPropertiesTest\GoToJailSquareTest.cs" />
     <Compile Include="PlayerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
