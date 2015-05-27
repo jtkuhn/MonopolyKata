@@ -42,21 +42,6 @@ namespace UnitTestProject1
         }
         
         [Test]
-        public void WhenPlayerOwns0Railroads_GetNumberOfRailroads_Returns0()
-        {
-            Assert.AreEqual(0, board.GetNumberOfRailroads(player1));
-        }
-
-        [Test]
-        public void WhenPlayerOwns2Railroads_GetNumberOfRailroads_Returns2()
-        {
-            player2.Move(5);
-            player2.Move(10);
-            Assert.AreEqual(1100, player2.Money);
-            Assert.AreEqual(2, board.GetNumberOfRailroads(player2));
-        }
-
-        [Test]
         public void WhenRailroadIsMortgaged_NoRentIsCharged()
         {
             Assert.AreEqual(1500, player1.Money);

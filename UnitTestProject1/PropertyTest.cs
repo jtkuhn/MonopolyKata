@@ -23,7 +23,6 @@ namespace UnitTestProject1
             player2 = new Player("Two", board);
             rentStrategy = new RentStrategyMonopolizable(board);
             prop = new MonopolizableProperty(rentStrategy, "TestProperty", Color.DarkBlue, 100, 20);
-            board.SetPropertyAt(5, prop);
         }
 
         [Test]

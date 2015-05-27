@@ -1,5 +1,6 @@
 using System.Linq;
 using MonopolyKata.PropertySquares;
+using MonopolyKata.PropertySquares.Properties;
 using MonopolyKata.PropertySquares.Rent;
 
 namespace MonopolyKata
@@ -19,6 +20,8 @@ namespace MonopolyKata
                 board[i] = new Square("Property " + i);
             }
             board[0] = new GoSquare();
+            board[1] = new MonopolizableProperty(rentStrategy, "Mediterranean Avenue", Color.Brown);
+            board[3] = new MonopolizableProperty(rentStrategy, "Baltic Avenue", Color.Brown);
             board[4] = new IncomeTaxSquare();
             board[5] = new RailroadSquare(rentStrategy, "Reading Railroad");
             board[10] = new JailSquare();
@@ -34,12 +37,7 @@ namespace MonopolyKata
         {
             return board[index];
         }
-
-        public void SetPropertyAt(int position, Property property)
-        {
-            board[position] = property;
-        }
-
+        
         public void PlayerPassesBy(Player player, int position)
         {
             GetSquareAt(position%Size).IsPassedBy(player);
@@ -60,6 +58,13 @@ namespace MonopolyKata
         public virtual int GetNumberOfOwnedUtilities()
         {
             return board.OfType<UtilitySquare>().Count(prop => prop.owner != null);
+        }
+
+        public bool IsPartOfMonopoly(MonopolizableProperty property)
+        {
+            Player owner = property.owner;
+            int count = board.OfType<MonopolizableProperty>().Count(prop => prop.owner != owner);
+            return count <= 0;
         }
     }
 }
