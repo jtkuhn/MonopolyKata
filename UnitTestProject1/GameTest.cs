@@ -13,8 +13,8 @@ namespace UnitTestProject1
         [Test]
         public void Board_IsInitializedCorrectly()
         {
-            Assert.AreEqual("Go", game.Board.GetPropertyAt(0).Name);
-            Assert.AreEqual("GoToJail", game.Board.GetPropertyAt(30).Name);
+            Assert.AreEqual("Go", game.Board.GetSquareAt(0).Name);
+            Assert.AreEqual("GoToJail", game.Board.GetSquareAt(30).Name);
         }
 
         [Test]
@@ -40,7 +40,5 @@ namespace UnitTestProject1
             Assert.Contains("Player 2", list);
             Assert.Contains("Player 3", list);
         }
-
-
     }
 }

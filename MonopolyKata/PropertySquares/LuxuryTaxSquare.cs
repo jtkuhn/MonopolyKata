@@ -1,6 +1,6 @@
-﻿namespace MonopolyKata
+﻿namespace MonopolyKata.PropertySquares
 {
-    public class LuxuryTaxSquare : Property
+    public class LuxuryTaxSquare : Square
     {
         public LuxuryTaxSquare() : base("Luxury Tax")
         {

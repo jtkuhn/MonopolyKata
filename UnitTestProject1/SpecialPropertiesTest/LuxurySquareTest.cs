@@ -1,4 +1,5 @@
 ﻿using MonopolyKata;
+using MonopolyKata.PropertySquares;
 using NUnit.Framework;
 
 namespace UnitTestProject1
@@ -7,7 +8,7 @@ namespace UnitTestProject1
     public class LuxurySquareTest
     {
         private Player player1 = new Player("Jill", new Board());
-        private Property prop1 = new LuxuryTaxSquare();
+        private Square prop1 = new LuxuryTaxSquare();
 
         [Test]
         public void WhenLuxuryTaxIsLandedOn_PlayerLoses75Dollars()

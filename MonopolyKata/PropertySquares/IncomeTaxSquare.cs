@@ -1,6 +1,6 @@
-﻿namespace MonopolyKata
+﻿namespace MonopolyKata.PropertySquares
 {
-    public class IncomeTaxSquare : Property
+    public class IncomeTaxSquare : Square
     {
         public IncomeTaxSquare() : base("Income Tax")
         {

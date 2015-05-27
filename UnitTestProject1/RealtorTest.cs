@@ -1,4 +1,5 @@
 ﻿using MonopolyKata;
+using MonopolyKata.PropertySquares;
 using NUnit.Framework;
 
 namespace UnitTestProject1
@@ -10,22 +11,14 @@ namespace UnitTestProject1
         private Board board;
         private Property prop;
         private Player player;
-
-
+        
         [SetUp]
         public void Setup()
         {
             board = new Board();
             realtor = new Realtor(board);
-            prop = board.GetPropertyAt(5);
+            prop = (Property)board.GetSquareAt(5);
             player = new Player("Bob", new Board());
-        }
-
-        [Test]
-        public void WhenRealtorIsInitialized_AllPropertyOwnersAreNull()
-        {
-            for (int i = 0; i < board.Size; i++)
-            Assert.Null(realtor.GetOwnerOf(board.GetPropertyAt(i)));
         }
 
         [Test]

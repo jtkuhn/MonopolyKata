@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,6 +45,11 @@
     <Compile Include="Board.cs" />
     <Compile Include="BoardFactory.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="IOC\PropertyModule.cs" />
+    <Compile Include="DiceRoller.cs" />
+    <Compile Include="PropertySquares\Properties\MonopolizableProperty.cs" />
+    <Compile Include="PropertySquares\Rent\RentStrategyMonopolizable.cs" />
+    <Compile Include="PropertySquares\Rent\RentStrategyUtility.cs" />
     <Compile Include="PropertySquares\GoSquare.cs" />
     <Compile Include="PropertySquares\GoToJailSquare.cs" />
     <Compile Include="PropertySquares\IncomeTaxSquare.cs" />
@@ -49,9 +57,16 @@
     <Compile Include="PropertySquares\LuxuryTaxSquare.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PropertySquares\Property.cs" />
+    <Compile Include="PropertySquares\Properties\Property.cs" />
+    <Compile Include="PropertySquares\Rent\IRentStrategy.cs" />
+    <Compile Include="PropertySquares\Rent\RentStrategyRailroad.cs" />
+    <Compile Include="PropertySquares\Square.cs" />
+    <Compile Include="PropertySquares\Properties\UtilitySquare.cs" />
     <Compile Include="Realtor.cs" />
-    <Compile Include="PropertySquares\RailroadSquare.cs" />
+    <Compile Include="PropertySquares\Properties\RailroadSquare.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

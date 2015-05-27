@@ -1,18 +1,19 @@
 ﻿using System;
+using MonopolyKata.PropertySquares;
 
 namespace MonopolyKata
 {
     public class Realtor
     {
         private Player[] propertyOwners;
-        private Property[] properties;
+        private Square[] properties;
         private Board board;
 
         public Realtor(Board board)
         {
             this.board = board;
             propertyOwners = new Player[board.Size];
-            properties = new Property[board.Size];
+            properties = new Square[board.Size];
             InitializeProperties();
         }
 
@@ -20,7 +21,7 @@ namespace MonopolyKata
         {
             for (var i = 0; i < board.Size; i++)
             {
-                properties[i] = board.GetPropertyAt(i);
+                properties[i] = board.GetSquareAt(i);
             }
         }
 

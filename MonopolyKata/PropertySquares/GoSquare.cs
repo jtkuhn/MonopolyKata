@@ -1,11 +1,10 @@
-﻿namespace MonopolyKata
+﻿namespace MonopolyKata.PropertySquares
 {
-    public class GoSquare : Property
+    public class GoSquare : Square
     {
         public GoSquare() : base("Go")
         {
         }
-
 
         public override void IsLandedOn(Player player)
         {

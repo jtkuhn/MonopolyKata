@@ -1,4 +1,6 @@
 ﻿using MonopolyKata;
+using MonopolyKata.PropertySquares;
+using MonopolyKata.PropertySquares.Rent;
 using NUnit.Framework;
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
@@ -57,6 +59,36 @@ namespace UnitTestProject1
             player1.Move(20);
             Assert.AreEqual(10, player1.Position);
             Assert.AreEqual(1700, player1.Money);
+        }
+
+        [Test]
+        public void WhenPlayerMortagesHisProperty_ItBecomesMortgaged()
+        {
+            Property prop = new Property(new RentStrategyMonopolizable(board), "testProperty");
+            prop.IsLandedOn(player1);
+            Assert.AreEqual(player1, prop.owner);
+            Assert.IsFalse(prop.IsMortgaged);
+            player1.Mortgage(prop);
+            Assert.IsTrue(prop.IsMortgaged);
+        }
+
+        [Test]
+        public void WhenPlayerUnmortgagesProperty_ItBecomesUnmortgaged()
+        {
+            Property prop = new Property(new RentStrategyMonopolizable(board), "testProperty");
+            prop.IsLandedOn(player1);
+            prop.IsMortgaged = true;
+            player1.UnMortgage(prop);
+            Assert.IsFalse(prop.IsMortgaged);
+        }
+
+        [Test]
+        public void PlayerMortgage_WillNotChangeUnownedProperty()
+        {
+            Property prop = new Property(new RentStrategyMonopolizable(board), "testProperty");
+            prop.IsLandedOn(new Player("hi", board));
+            player1.Mortgage(prop);
+            Assert.IsFalse(prop.IsMortgaged);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using MonopolyKata;
+using MonopolyKata.PropertySquares;
 using NUnit.Framework;
 
 namespace UnitTestProject1
@@ -6,7 +7,7 @@ namespace UnitTestProject1
     [TestFixture]
     public class GoSquareTest
     {
-        private Property gs = new GoSquare();
+        private Square gs = new GoSquare();
         private Player player1;
 
         [SetUp]

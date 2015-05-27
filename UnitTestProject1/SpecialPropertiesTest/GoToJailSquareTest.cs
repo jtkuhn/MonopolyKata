@@ -1,4 +1,5 @@
 ﻿using MonopolyKata;
+using MonopolyKata.PropertySquares;
 using NUnit.Framework;
 
 namespace UnitTestProject1

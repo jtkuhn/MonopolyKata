@@ -72,6 +72,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="DiceRollerTest.cs" />
     <Compile Include="SpecialPropertiesTest\RailroadSquareTest.cs" />
     <Compile Include="SpecialPropertiesTest\GoToJailSquareTest.cs" />
     <Compile Include="PlayerTest.cs" />
@@ -82,6 +83,10 @@
     <Compile Include="SpecialPropertiesTest\LuxurySquareTest.cs" />
     <Compile Include="SpecialPropertiesTest\IncomeTaxTest.cs" />
     <Compile Include="RealtorTest.cs" />
+    <Compile Include="SpecialPropertiesTest\RentTests\RentStrategyMonopolizableTest.cs" />
+    <Compile Include="SpecialPropertiesTest\RentTests\RentStrategyRailroadTest.cs" />
+    <Compile Include="SpecialPropertiesTest\RentTests\RentStrategyUtilityTest.cs" />
+    <Compile Include="SpecialPropertiesTest\UtilitySquareTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

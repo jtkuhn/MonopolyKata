@@ -1,6 +1,6 @@
-﻿namespace MonopolyKata
+﻿namespace MonopolyKata.PropertySquares
 {
-    public class JailSquare : Property
+    public class JailSquare : Square
     {
         public JailSquare() : base("Just Visiting")
         {

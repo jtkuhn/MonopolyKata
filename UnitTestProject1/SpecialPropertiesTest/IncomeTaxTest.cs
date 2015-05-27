@@ -1,4 +1,5 @@
 ﻿using MonopolyKata;
+using MonopolyKata.PropertySquares;
 using NUnit.Framework;
 
 namespace UnitTestProject1
@@ -7,7 +8,7 @@ namespace UnitTestProject1
     public class IncomeTaxTest
     {
         private Player player1;
-        private Property prop = new IncomeTaxSquare();
+        private Square prop = new IncomeTaxSquare();
 
         [SetUp]
         public void Init()
@@ -20,6 +21,8 @@ namespace UnitTestProject1
             Assert.AreEqual(1500, player1.Money);
             prop.IsLandedOn(player1);
             Assert.AreEqual(1350, player1.Money);
+            prop.IsLandedOn(player1);
+            Assert.AreEqual(1215, player1.Money);
         }
 
         [Test]
@@ -31,7 +34,7 @@ namespace UnitTestProject1
         }
 
         [Test]
-        public void WhenPlayerHas2100AndLandsOnIncomeTax_MoneyDecreasedBy200Dollars()
+        public void WhenPlayerWith2100LandsOnIncomeTax_MoneyDecreasedBy200Dollars()
         {
             player1.Money = 2100;
             prop.IsLandedOn(player1);

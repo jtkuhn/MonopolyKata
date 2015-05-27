@@ -1,4 +1,7 @@
 ﻿using MonopolyKata;
+using MonopolyKata.PropertySquares;
+using MonopolyKata.PropertySquares.Properties;
+using MonopolyKata.PropertySquares.Rent;
 using NUnit.Framework;
 
 namespace UnitTestProject1
@@ -10,7 +13,7 @@ namespace UnitTestProject1
         private Player player2;
         private Property prop;
         private Board board;
-        private Realtor realtor;
+        private IRentStrategy rentStrategy;
 
         [SetUp]
         public void Init()
@@ -18,15 +21,15 @@ namespace UnitTestProject1
             board = new Board();
             player1 = new Player("One", board);
             player2 = new Player("Two", board);
-            prop = new Property("TestProperty", 100, 20);
+            rentStrategy = new RentStrategyMonopolizable(board);
+            prop = new MonopolizableProperty(rentStrategy, "TestProperty", 100, 20);
             board.SetPropertyAt(5, prop);
-            realtor = new Realtor(board);
         }
 
         [Test]
         public void WhenConstructorFires_PropertiesAreCorrectlyInitialized()
         {
-            Property BoardWalk = new Property("BoardWalk");
+            Property BoardWalk = new Property(rentStrategy, "BoardWalk", 10000000, 2);
             Assert.AreEqual("BoardWalk", BoardWalk.Name);
             Assert.Null(prop.owner);
         }
@@ -72,5 +75,17 @@ namespace UnitTestProject1
             Assert.AreEqual(1520, player1.Money);
         }
 
+        [Test]
+        public void MortgagedProperty_ChargesNoRent()
+        {
+            Assert.AreEqual(1500, player1.Money);
+            prop.IsLandedOn(new Player("bob", board));
+            prop.IsMortgaged = true;
+            prop.IsLandedOn(player1);
+            Assert.AreEqual(1500, player1.Money);
+            prop.IsMortgaged = false;
+            prop.IsLandedOn(player1);
+            Assert.AreNotEqual(1500, player1.Money);
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using MonopolyKata.PropertySquares;
 
 namespace MonopolyKata
 {
@@ -26,9 +27,14 @@ namespace MonopolyKata
             Position = board.PlayerLandsOn(this, Position + distance);
         }
 
-        public int GetNumberOfRailroads()
+        public void Mortgage(Property property)
         {
-            return board.GetNumberOfRailroads(this);
+            if (property.owner == this) property.IsMortgaged = true;
+        }
+
+        public void UnMortgage(Property property)
+        {
+            if (property.owner == this) property.IsMortgaged = false;
         }
     }
 }

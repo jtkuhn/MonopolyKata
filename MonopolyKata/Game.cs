@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using MonopolyKata.PropertySquares.Rent;
 
 namespace MonopolyKata
 {
     public class Game
     {
         public Player[] players;
-        private Random rand = new Random();
+        private DiceRoller diceRoller = new DiceRoller();
         private readonly Board board;
         
         public Board Board
@@ -27,9 +28,8 @@ namespace MonopolyKata
         {
             foreach (Player currentPlayer in players)
             {
-                int die1 = rand.Next(1, 7);
-                int die2 = rand.Next(1, 7);
-                currentPlayer.Move(die1 + die2);
+                int dice = diceRoller.GetNextRoll();
+                currentPlayer.Move(dice);
             }
         }
 
@@ -44,6 +44,7 @@ namespace MonopolyKata
 
         private void Shuffle(IList<Player> list)
         {
+            Random rand = new Random();
             int n = list.Count;
             while (n > 1)
             {
