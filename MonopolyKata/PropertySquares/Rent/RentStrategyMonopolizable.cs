@@ -1,4 +1,6 @@
-﻿namespace MonopolyKata.PropertySquares.Rent
+﻿using MonopolyKata.PropertySquares.Properties;
+
+namespace MonopolyKata.PropertySquares.Rent
 {
     public class RentStrategyMonopolizable : IRentStrategy
     {
@@ -21,14 +23,15 @@
             }
         }
 
-    public void GetMortgageStatus(bool isMortgaged)
+        public void GetMortgageStatus(bool isMortgaged)
         {
             _isMortgaged = isMortgaged;
         }
 
-        public void SetRent(Property prop)
+        public void SetRent(MonopolizableProperty prop)
         {
-            rent = prop.rent;
+            bool doubled = false;//board.IsPartOfMonopoly(prop);
+            rent = doubled ? prop.rent*2 : prop.rent;
         }
     }
 }

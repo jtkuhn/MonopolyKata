@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Board.cs" />
     <Compile Include="BoardFactory.cs" />
+    <Compile Include="Color.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="IOC\PropertyModule.cs" />
     <Compile Include="DiceRoller.cs" />

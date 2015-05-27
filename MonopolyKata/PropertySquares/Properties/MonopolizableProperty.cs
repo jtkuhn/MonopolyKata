@@ -4,8 +4,11 @@ namespace MonopolyKata.PropertySquares.Properties
 {
     public class MonopolizableProperty : Property
     {
-        public MonopolizableProperty(IRentStrategy rentStrat, string nm, int cost = 0, int rent = 0) : base(rentStrat, nm, cost, rent)
+        public Color Color;
+
+        public MonopolizableProperty(IRentStrategy rentStrat, string nm, Color c, int cost = 0, int rent = 0) : base(rentStrat, nm, cost, rent)
         {
+            Color = c;
         }
 
         public override void IsLandedOn(Player player)

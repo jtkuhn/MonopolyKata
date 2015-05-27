@@ -13,7 +13,7 @@ namespace MonopolyKata
         public Board()
         {
             Size = 40;
-            board  = new Square[Size];
+            board = new Square[Size];
             for (int i = 0; i < Size; i++)
             {
                 board[i] = new Square("Property " + i);
