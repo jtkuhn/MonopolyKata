@@ -11,9 +11,12 @@ namespace MonopolyKata
         public int Size { get; set; }
         private IRentStrategy rentStrategy;
         private Realtor realtor;
+        private JailWarden jailWarden;
 
-        public Board(Realtor realtor)
+        public Board(Realtor realtor, JailWarden warden)
         {
+            jailWarden = warden;
+            jailWarden.SetPositionOfJail(10);
             this.realtor = realtor;
             Size = 40;
             board = new Square[Size];
@@ -34,7 +37,7 @@ namespace MonopolyKata
             InitializeSquare(15, new RailroadSquare(rentStrategy, "Pennsylvania Railroad", realtor));
             InitializeSquare(25, new RailroadSquare(rentStrategy, "B & O Railroad", realtor));
             InitializeSquare(28, new UtilitySquare(rentStrategy, "Water Works", realtor));
-            InitializeSquare(30, new GoToJailSquare());
+            InitializeSquare(30, new GoToJailSquare(jailWarden));
             InitializeSquare(35, new RailroadSquare(rentStrategy, "Short Line", realtor));
         }
 
@@ -66,6 +69,15 @@ namespace MonopolyKata
             Color color = property.Color;
             int count = board.OfType<MonopolizableProperty>().Where(prop => prop.Color == color).Count(prop => realtor.GetOwnerOf(prop) != owner);
             return count <= 0;
+        }
+
+        public void MovePlayer(Player player, int distance)
+        {
+            for (int i = 1; i < distance; i++)
+            {
+                PlayerPassesBy(player, player.Position + i);
+            }
+            player.Position = PlayerLandsOn(player, player.Position + distance);
         }
     }
 }

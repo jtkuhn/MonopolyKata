@@ -7,9 +7,10 @@ namespace MonopolyKata
     public class Game
     {
         public Player[] players;
-        private DiceRoller diceRoller = new DiceRoller();
+        private DiceRoller diceRoller;
         private readonly Board board;
         private Realtor realtor;
+        private JailWarden jailWarden;
         
         public Board Board
         {
@@ -18,9 +19,10 @@ namespace MonopolyKata
         
         public Game(int numberOfPlayers)
         {
+            diceRoller = new DiceRoller();
             realtor = new Realtor();
-            BoardFactory bd = new BoardFactory();
-            board = bd.Create(realtor);
+            jailWarden = new JailWarden();
+            board = new Board(realtor, jailWarden);
 
             players = new Player[numberOfPlayers];
             RandomlyOrderPlayers(board);
@@ -31,7 +33,7 @@ namespace MonopolyKata
             foreach (Player currentPlayer in players)
             {
                 int dice = diceRoller.GetNextRoll();
-                currentPlayer.Move(dice);
+                board.MovePlayer(currentPlayer, dice);
             }
         }
 
@@ -39,7 +41,7 @@ namespace MonopolyKata
         { 
             for (int j = 0; j < players.Length; j++)
             {
-                players[j] = new Player("Player " + j, board);
+                players[j] = new Player("Player " + j);
             }
             Shuffle(players);
         }

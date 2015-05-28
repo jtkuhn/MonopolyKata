@@ -7,15 +7,19 @@ namespace UnitTestProject1
     [TestFixture]
     class GoToJailSquareTest
     {
-        private GoToJailSquare gtj = new GoToJailSquare();
-        private Player player1 = new Player("t", new Board(new Realtor()));
-        private BoardFactory bd = new BoardFactory();
+        private JailWarden jailWarden;
+        private GoToJailSquare gtj;
         private Board board;
+        private Player player1;
 
         [SetUp]
         public void Init()
         {
-            board = bd.Create(new Realtor());
+            board = new Board(new Realtor(), new JailWarden());
+            player1 = new Player("t");
+            jailWarden = new JailWarden();
+            jailWarden.SetPositionOfJail(10);
+            gtj = new GoToJailSquare(jailWarden);
         }
 
         [Test]
@@ -27,8 +31,8 @@ namespace UnitTestProject1
         [Test]
         public void WhenPlayerLandsOnGoToJail_PlayerIsMovedToJail()
         {
-            player1.Move(25);
-            player1.Move(5);
+            board.MovePlayer(player1, 25);
+            board.MovePlayer(player1, 5);
             gtj.IsLandedOn(player1);
             Assert.AreEqual(10, player1.Position);
         }

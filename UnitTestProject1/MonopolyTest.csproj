@@ -74,6 +74,7 @@
   <ItemGroup>
     <Compile Include="BoardTest.cs" />
     <Compile Include="DiceRollerTest.cs" />
+    <Compile Include="JailWardenTest.cs" />
     <Compile Include="SpecialPropertiesTest\RailroadSquareTest.cs" />
     <Compile Include="SpecialPropertiesTest\GoToJailSquareTest.cs" />
     <Compile Include="PlayerTest.cs" />

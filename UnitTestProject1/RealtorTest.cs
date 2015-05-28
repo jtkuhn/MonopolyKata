@@ -17,9 +17,9 @@ namespace UnitTestProject1
         public void Setup()
         {
             realtor = new Realtor();
-            board = new Board(realtor);
+            board = new Board(realtor, new JailWarden());
             prop = new Property(new RentStrategyMonopolizable(board), "hi", realtor);
-            player1 = new Player("Bob", board);
+            player1 = new Player("Bob");
         }
 
         [Test]
@@ -34,7 +34,7 @@ namespace UnitTestProject1
         {
             player1 = realtor.GetOwnerOf(prop);
             Assert.Null(player1);
-            Player player2 = new Player("Joe", new Board(realtor));
+            Player player2 = new Player("Joe");
             realtor.SetOwnerOf(prop, player2);
             Assert.AreEqual(player2, realtor.GetOwnerOf(prop));
         }
@@ -72,7 +72,7 @@ namespace UnitTestProject1
             RailroadSquare rr3 = new RailroadSquare(new RentStrategyRailroad(realtor), "3", realtor);
             realtor.SetOwnerOf(rr1, player1);
             realtor.SetOwnerOf(rr2, player1);
-            realtor.SetOwnerOf(rr3, new Player("hi", board));
+            realtor.SetOwnerOf(rr3, new Player("hi"));
             Assert.AreEqual(2, realtor.GetNumberOfOwnedRailroads(player1));
         }
 
@@ -80,7 +80,7 @@ namespace UnitTestProject1
         public void WhenOneUtilityIsOwned_GetNumberOfUtilities_ReturnsOne()
         {
             Assert.AreEqual(0, realtor.GetNumberOfOwnedUtilities());
-            Player player1 = new Player("Hi", board);
+            Player player1 = new Player("Hi");
             Property prop1 = new UtilitySquare(new RentStrategyUtility(new DiceRoller(), realtor), "util1", realtor);
             realtor.SetOwnerOf(prop1, player1);
             Assert.AreEqual(1, realtor.GetNumberOfOwnedUtilities());
@@ -89,7 +89,7 @@ namespace UnitTestProject1
         [Test]
         public void WhenTwoUtilitiesAreOwned_GetNumber_ReturnsTwo()
         {
-            Player player1 = new Player("peekaboo", board);
+            Player player1 = new Player("peekaboo");
             Property prop1 = new UtilitySquare(new RentStrategyUtility(new DiceRoller(), realtor), "util1", realtor);
             Property prop2 = new UtilitySquare(new RentStrategyUtility(new DiceRoller(), realtor), "util2", realtor);
             realtor.SetOwnerOf(prop1, player1);

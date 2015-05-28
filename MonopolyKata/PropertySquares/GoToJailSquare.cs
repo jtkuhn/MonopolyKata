@@ -2,13 +2,16 @@
 {
     public class GoToJailSquare : Square
     {
-        public GoToJailSquare() : base("GoToJail")
+        private JailWarden warden;
+
+        public GoToJailSquare(JailWarden warden) : base("GoToJail")
         {
+            this.warden = warden;
         }
 
         public override void IsLandedOn(Player player)
         {
-            player.Position = 10;
+            warden.MovePlayerToJail(player);
         }
     }
 }

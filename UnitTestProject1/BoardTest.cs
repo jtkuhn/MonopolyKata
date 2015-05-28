@@ -14,18 +14,18 @@ namespace UnitTestProject1
         [SetUp]
         public void Setup()
         {
-            board = new Board(new Realtor());
-            player1 = new Player("Hi", board);
-            player2 = new Player("hello", board);
+            board = new Board(new Realtor(), new JailWarden());
+            player1 = new Player("Hi");
+            player2 = new Player("hello");
         }
 
         [Test]
         public void WhenPlayerHasNoMonopoly_IsMonopolyReturnsFalse()
         {
-            player1.Move(1);
+            board.MovePlayer(player2, 1);
             Assert.False(board.IsPartOfMonopoly((MonopolizableProperty) board.GetSquareAt(1)));
             Assert.False(board.IsPartOfMonopoly((MonopolizableProperty) board.GetSquareAt(3)));
-            player2.Move(3);
+            board.MovePlayer(player2, 3);
             Assert.False(board.IsPartOfMonopoly((MonopolizableProperty)board.GetSquareAt(1)));
             Assert.False(board.IsPartOfMonopoly((MonopolizableProperty)board.GetSquareAt(3)));
         }
@@ -33,8 +33,8 @@ namespace UnitTestProject1
         [Test]
         public void WhenPlayerHasMonopoly_IsMonopolyReturnsTrue()
         {
-            player1.Move(1);
-            player1.Move(2);
+            board.MovePlayer(player1, 1);
+            board.MovePlayer(player1, 2);
             Assert.True(board.IsPartOfMonopoly((MonopolizableProperty) board.GetSquareAt(1)));
             Assert.True(board.IsPartOfMonopoly((MonopolizableProperty) board.GetSquareAt(3)));
         }

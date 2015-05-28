@@ -12,8 +12,8 @@ namespace UnitTestProject1.SpecialPropertiesTest
         [SetUp]
         public void Setup()
         {
-            board = new Board(new Realtor());
-            player = new Player("Tester", board);
+            board = new Board(new Realtor(), new JailWarden());
+            player = new Player("Tester");
         }
     }
 }

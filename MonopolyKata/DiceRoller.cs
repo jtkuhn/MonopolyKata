@@ -24,6 +24,11 @@ namespace MonopolyKata.PropertySquares.Rent
             return die1 + die2;
         }
 
+        public bool WasDoubles()
+        {
+            return (die1 == die2);
+        }
+
         private void RollTwoDice()
         {
             die1 = rand.Next(1, 7);

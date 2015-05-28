@@ -21,10 +21,10 @@ namespace UnitTestProject1
         {
             realtor = new Realtor();
             mockRentStrategy = new Mock<IRentStrategy>();
-            board = new Board(realtor);
+            board = new Board(realtor, new JailWarden());
             rr1 = new RailroadSquare(mockRentStrategy.Object, "Reading Railroad", realtor);
-            player1 = new Player("t", board);
-            player2 = new Player("2", board);
+            player1 = new Player("t");
+            player2 = new Player("2");
         }
 
         [Test]

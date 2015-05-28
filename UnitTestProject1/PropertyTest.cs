@@ -21,9 +21,9 @@ namespace UnitTestProject1
         public void Init()
         {
             realtor = new Realtor();
-            board = new Mock<Board>(realtor);
-            player1 = new Player("One", board.Object);
-            player2 = new Player("Two", board.Object);
+            board = new Mock<Board>(realtor, new JailWarden());
+            player1 = new Player("One");
+            player2 = new Player("Two");
             rentStrategy = new RentStrategyMonopolizable(board.Object);
             prop = new MonopolizableProperty(rentStrategy, "TestProperty", realtor, Color.Brown, 100, 20);
         }
@@ -76,7 +76,7 @@ namespace UnitTestProject1
         public void MortgagedProperty_ChargesNoRent()
         {
             Assert.AreEqual(1500, player1.Money);
-            prop.IsLandedOn(new Player("bob", board.Object));
+            prop.IsLandedOn(new Player("bob"));
             prop.IsMortgaged = true;
             prop.IsLandedOn(player1);
             Assert.AreEqual(1500, player1.Money);

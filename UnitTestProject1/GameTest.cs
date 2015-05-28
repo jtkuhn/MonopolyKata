@@ -40,5 +40,11 @@ namespace UnitTestProject1
             Assert.Contains("Player 2", list);
             Assert.Contains("Player 3", list);
         }
+
+        [Test]
+        public void WhenPlayerRollsThreeDoubles_TheyGoToJail()
+        {
+            
+        }
     }
 }

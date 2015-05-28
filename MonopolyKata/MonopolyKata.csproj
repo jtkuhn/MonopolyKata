@@ -43,11 +43,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Board.cs" />
-    <Compile Include="BoardFactory.cs" />
     <Compile Include="Color.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="IOC\PropertyModule.cs" />
     <Compile Include="DiceRoller.cs" />
+    <Compile Include="JailWarden.cs" />
     <Compile Include="PropertySquares\Properties\MonopolizableProperty.cs" />
     <Compile Include="PropertySquares\Rent\RentStrategyMonopolizable.cs" />
     <Compile Include="PropertySquares\Rent\RentStrategyUtility.cs" />
@@ -67,6 +67,7 @@
     <Compile Include="PropertySquares\Properties\RailroadSquare.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
