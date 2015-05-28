@@ -39,8 +39,6 @@ namespace UnitTestProject1
             Assert.AreEqual(player2, realtor.GetOwnerOf(prop));
         }
 
-
-
         [Test]
         public void WhenPlayerMortagesHisProperty_ItBecomesMortgaged()
         {
