@@ -1,5 +1,6 @@
 ﻿using MonopolyKata;
 using MonopolyKata.PropertySquares;
+using MonopolyKata.PropertySquares.Rent;
 using NUnit.Framework;
 
 namespace UnitTestProject1
@@ -16,8 +17,8 @@ namespace UnitTestProject1
         public void Setup()
         {
             board = new Board();
-            realtor = new Realtor(board);
-            prop = (Property)board.GetSquareAt(5);
+            realtor = new Realtor();
+            prop = new Property(new RentStrategyMonopolizable(board), "hi", realtor);
             player = new Player("Bob", new Board());
         }
 

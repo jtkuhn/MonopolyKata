@@ -13,10 +13,12 @@ namespace UnitTestProject1
         private Player player1;
         private BoardFactory bd = new BoardFactory();
         private Board board;
+        private Realtor realtor;
 
         [SetUp]
         public void Init()
         {
+            realtor = new Realtor();
             board = bd.Create();
             player1 = new Player("Bob", new Board());
         }
@@ -64,9 +66,9 @@ namespace UnitTestProject1
         [Test]
         public void WhenPlayerMortagesHisProperty_ItBecomesMortgaged()
         {
-            Property prop = new Property(new RentStrategyMonopolizable(board), "testProperty");
+            Property prop = new Property(new RentStrategyMonopolizable(board), "testProperty", realtor);
             prop.IsLandedOn(player1);
-            Assert.AreEqual(player1, prop.owner);
+            Assert.AreEqual(player1, realtor.GetOwnerOf(prop));
             Assert.IsFalse(prop.IsMortgaged);
             player1.Mortgage(prop);
             Assert.IsTrue(prop.IsMortgaged);
@@ -75,7 +77,7 @@ namespace UnitTestProject1
         [Test]
         public void WhenPlayerUnmortgagesProperty_ItBecomesUnmortgaged()
         {
-            Property prop = new Property(new RentStrategyMonopolizable(board), "testProperty");
+            Property prop = new Property(new RentStrategyMonopolizable(board), "testProperty", realtor);
             prop.IsLandedOn(player1);
             prop.IsMortgaged = true;
             player1.UnMortgage(prop);
@@ -85,7 +87,7 @@ namespace UnitTestProject1
         [Test]
         public void PlayerMortgage_WillNotChangeUnownedProperty()
         {
-            Property prop = new Property(new RentStrategyMonopolizable(board), "testProperty");
+            Property prop = new Property(new RentStrategyMonopolizable(board), "testProperty", realtor);
             prop.IsLandedOn(new Player("hi", board));
             player1.Mortgage(prop);
             Assert.IsFalse(prop.IsMortgaged);

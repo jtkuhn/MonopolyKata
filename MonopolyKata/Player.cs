@@ -29,12 +29,12 @@ namespace MonopolyKata
 
         public void Mortgage(Property property)
         {
-            if (property.owner == this) property.IsMortgaged = true;
+            //if (property.owner == this) property.IsMortgaged = true;
         }
 
         public void UnMortgage(Property property)
         {
-            if (property.owner == this) property.IsMortgaged = false;
+            //if (property.owner == this) property.IsMortgaged = false;
         }
     }
 }

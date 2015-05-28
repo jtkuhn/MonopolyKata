@@ -12,6 +12,7 @@ namespace MonopolyKata.PropertySquares.Rent
         {
             this.board = board;
             _isMortgaged = false;
+            rent = 0;
         }
 
         public void GetRent(Player owner, Player player)
@@ -30,8 +31,7 @@ namespace MonopolyKata.PropertySquares.Rent
 
         public void SetRent(MonopolizableProperty prop)
         {
-            bool doubled = false;//board.IsPartOfMonopoly(prop);
-            rent = doubled ? prop.rent*2 : prop.rent;
+            rent = board.IsPartOfMonopoly(prop) ? prop.rent*2 : prop.rent;
         }
     }
 }

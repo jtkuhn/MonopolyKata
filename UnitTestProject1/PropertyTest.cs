@@ -2,6 +2,7 @@
 using MonopolyKata.PropertySquares;
 using MonopolyKata.PropertySquares.Properties;
 using MonopolyKata.PropertySquares.Rent;
+using Moq;
 using NUnit.Framework;
 
 namespace UnitTestProject1
@@ -12,35 +13,31 @@ namespace UnitTestProject1
         private Player player1;
         private Player player2;
         private Property prop;
-        private Board board;
+        private Property prop2;
+        private Mock<Board> board;
         private IRentStrategy rentStrategy;
+        private Realtor realtor;
 
         [SetUp]
         public void Init()
         {
-            board = new Board();
-            player1 = new Player("One", board);
-            player2 = new Player("Two", board);
-            rentStrategy = new RentStrategyMonopolizable(board);
-            prop = new MonopolizableProperty(rentStrategy, "TestProperty", Color.DarkBlue, 100, 20);
+            realtor = new Realtor();
+            board = new Mock<Board>();
+            player1 = new Player("One", board.Object);
+            player2 = new Player("Two", board.Object);
+            rentStrategy = new RentStrategyMonopolizable(board.Object);
+            prop = new MonopolizableProperty(rentStrategy, "TestProperty", realtor, Color.Brown, 100, 20);
         }
 
         [Test]
         public void WhenConstructorFires_PropertiesAreCorrectlyInitialized()
         {
-            Property BoardWalk = new Property(rentStrategy, "BoardWalk", 10000000, 2);
+            Property BoardWalk = new Property(rentStrategy, "BoardWalk", realtor, cost: 10000000, rent: 2);
             Assert.AreEqual("BoardWalk", BoardWalk.Name);
-            Assert.Null(prop.owner);
+            Assert.Null(realtor.GetOwnerOf(prop));
         }
 
-        [Test]
-        public void SetOwner_ChangesTheOwner()
-        {
-            prop.SetOwner(player1);
-            Assert.AreEqual(player1, prop.owner);
-        }
-
-        [Test]
+       [Test]
         public void WhenUnownedPropertyIsLandedOn_PlayerLosesCost()
         {
             Assert.AreEqual(1500, player1.Money);
@@ -51,16 +48,18 @@ namespace UnitTestProject1
         [Test]
         public void WhenUnownedPropertyIsLandedOn_OwnerChangesToPlayer()
         {
-            Assert.Null(prop.owner);
+            Assert.Null(realtor.GetOwnerOf(prop));
             prop.IsLandedOn(player1);
-            Assert.AreEqual(player1, prop.owner);
+            Assert.AreEqual(player1, realtor.GetOwnerOf(prop));
         }
 
         [Test]
         public void WhenPropertyIsLandedOn_PlayerMoneyIsReducedByRent()
         {
+            board.Setup(x => x.IsPartOfMonopoly(It.IsAny<MonopolizableProperty>())).Returns(false);
             Assert.AreEqual(1500, player1.Money);
-            prop.SetOwner(player2);
+            realtor.SetOwnerOf(prop, player2);
+            Assert.AreEqual(player2, realtor.GetOwnerOf(prop));
             prop.IsLandedOn(player1);
             Assert.AreEqual(1480, player1.Money);
         }
@@ -69,7 +68,7 @@ namespace UnitTestProject1
         public void WhenPropertyIsLandedOn_OwnersMoneyIsIncreasedByRent()
         {
             Assert.AreEqual(1500, player1.Money);
-            prop.SetOwner(player1);
+            realtor.SetOwnerOf(prop, player1);
             prop.IsLandedOn(player2);
             Assert.AreEqual(1520, player1.Money);
         }
@@ -78,7 +77,7 @@ namespace UnitTestProject1
         public void MortgagedProperty_ChargesNoRent()
         {
             Assert.AreEqual(1500, player1.Money);
-            prop.IsLandedOn(new Player("bob", board));
+            prop.IsLandedOn(new Player("bob", board.Object));
             prop.IsMortgaged = true;
             prop.IsLandedOn(player1);
             Assert.AreEqual(1500, player1.Money);

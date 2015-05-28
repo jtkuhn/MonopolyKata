@@ -14,13 +14,15 @@ namespace UnitTestProject1
         private Player player2;
         private Board board;
         private Mock<IRentStrategy> mockRentStrategy;
+        private Realtor realtor;
 
         [SetUp]
         public void Init()
         {
+            realtor = new Realtor();
             mockRentStrategy = new Mock<IRentStrategy>();
             board = new Board();
-            rr1 = new RailroadSquare(mockRentStrategy.Object, "Reading Railroad");
+            rr1 = new RailroadSquare(mockRentStrategy.Object, "Reading Railroad", realtor);
             player1 = new Player("t", board);
             player2 = new Player("2", board);
         }
@@ -36,16 +38,16 @@ namespace UnitTestProject1
         [Test]
         public void WhenUnownedRailroadIsLandedOn_PlayerBecomesOwner()
         {
-            Assert.Null(rr1.owner);
+            Assert.Null(realtor.GetOwnerOf(rr1));
             rr1.IsLandedOn(player1);
-            Assert.AreEqual(player1, rr1.owner);
+            Assert.AreEqual(player1, realtor.GetOwnerOf(rr1));
         }
         
         [Test]
         public void WhenRailroadIsMortgaged_NoRentIsCharged()
         {
             Assert.AreEqual(1500, player1.Money);
-            rr1.IsLandedOn(player2);
+            realtor.SetOwnerOf(rr1, player2);
             rr1.IsMortgaged = true;
             rr1.IsLandedOn(player1);
             Assert.AreEqual(1500, player1.Money);

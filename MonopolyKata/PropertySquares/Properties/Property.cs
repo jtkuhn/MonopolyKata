@@ -4,38 +4,34 @@ namespace MonopolyKata.PropertySquares
 {
     public class Property : Square
     {
-        public Player owner;
         public int cost;
         public int rent;
         protected readonly IRentStrategy rentStrategy;
+        protected Realtor realtor;
 
         public bool IsMortgaged { get; set; }
 
-        public Property(IRentStrategy rentStrat, string nm, int cost = 0, int rent = 0) : base(nm)
+        public Property(IRentStrategy rentStrat, string nm, Realtor realtor, int cost = 0, int rent = 0) : base(nm)
         {
+            this.realtor = realtor;
             IsMortgaged = false;
             rentStrategy = rentStrat;
             this.cost = cost;
             this.rent = rent;
         }
 
-        public void SetOwner(Player player)
-        {
-            owner = player;
-        }
-
         public override void IsLandedOn(Player player)
         {
-            if (owner != null)
+            if (realtor.GetOwnerOf(this) != null)
             {
                 rentStrategy.GetMortgageStatus(IsMortgaged);
-                rentStrategy.GetRent(owner, player);
+                rentStrategy.GetRent(realtor.GetOwnerOf(this), player);
                 
             }
             else
             {
                 player.Money -= cost;
-                owner = player;
+                realtor.SetOwnerOf(this, player);
             }
         }
     }

@@ -10,9 +10,11 @@ namespace MonopolyKata
         private Square[] board;
         public int Size { get; set; }
         private IRentStrategy rentStrategy;
+        private Realtor realtor;
 
         public Board()
         {
+            realtor = new Realtor();
             Size = 40;
             board = new Square[Size];
             for (int i = 0; i < Size; i++)
@@ -20,17 +22,17 @@ namespace MonopolyKata
                 board[i] = new Square("Property " + i);
             }
             board[0] = new GoSquare();
-            board[1] = new MonopolizableProperty(rentStrategy, "Mediterranean Avenue", Color.Brown);
-            board[3] = new MonopolizableProperty(rentStrategy, "Baltic Avenue", Color.Brown);
+            board[1] = new MonopolizableProperty(rentStrategy, "Mediterranean Avenue", realtor, Color.Brown);
+            board[3] = new MonopolizableProperty(rentStrategy, "Baltic Avenue", realtor, Color.Brown);
             board[4] = new IncomeTaxSquare();
-            board[5] = new RailroadSquare(rentStrategy, "Reading Railroad");
+            board[5] = new RailroadSquare(rentStrategy, "Reading Railroad", realtor);
             board[10] = new JailSquare();
-            board[12] = new UtilitySquare(rentStrategy, "Electric Company");
-            board[15] = new RailroadSquare(rentStrategy, "Pennsylvania Railroad");
-            board[25] = new RailroadSquare(rentStrategy, "B & O Railroad");
-            board[28] = new UtilitySquare(rentStrategy, "Water Works");
+            board[12] = new UtilitySquare(rentStrategy, "Electric Company", realtor);
+            board[15] = new RailroadSquare(rentStrategy, "Pennsylvania Railroad", realtor);
+            board[25] = new RailroadSquare(rentStrategy, "B & O Railroad", realtor);
+            board[28] = new UtilitySquare(rentStrategy, "Water Works", realtor);
             board[30] = new GoToJailSquare();
-            board[35] = new RailroadSquare(rentStrategy, "Short Line");
+            board[35] = new RailroadSquare(rentStrategy, "Short Line", realtor);
         }
 
         public Square GetSquareAt(int index)
@@ -52,18 +54,19 @@ namespace MonopolyKata
 
         public virtual int GetNumberOfRailroads(Player player)
         {
-            return board.OfType<RailroadSquare>().Count(prop => prop.owner == player);
+            return board.OfType<RailroadSquare>().Count(prop => realtor.GetOwnerOf(prop) == player);
         }
 
         public virtual int GetNumberOfOwnedUtilities()
         {
-            return board.OfType<UtilitySquare>().Count(prop => prop.owner != null);
+            return board.OfType<UtilitySquare>().Count(prop => realtor.GetOwnerOf(prop) != null);
         }
 
-        public bool IsPartOfMonopoly(MonopolizableProperty property)
+        public virtual bool IsPartOfMonopoly(MonopolizableProperty property)
         {
-            Player owner = property.owner;
-            int count = board.OfType<MonopolizableProperty>().Count(prop => prop.owner != owner);
+            Player owner = realtor.GetOwnerOf(property);
+            Color color = property.Color;
+            int count = board.OfType<MonopolizableProperty>().Where(prop => prop.Color == color).Count(prop => realtor.GetOwnerOf(prop) != owner);
             return count <= 0;
         }
     }
