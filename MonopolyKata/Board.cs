@@ -26,6 +26,9 @@ namespace MonopolyKata
             InitializeSquare(3, new MonopolizableProperty(rentStrategy, "Baltic Avenue", realtor, Color.Brown));
             InitializeSquare(4, new IncomeTaxSquare());
             InitializeSquare(5, new RailroadSquare(rentStrategy, "Reading Railroad", realtor));
+            InitializeSquare(6, new MonopolizableProperty(rentStrategy, "Oriental Avenue", realtor, Color.LightBlue));
+            InitializeSquare(8, new MonopolizableProperty(rentStrategy, "Vermont Avenue", realtor, Color.LightBlue));
+            InitializeSquare(9, new MonopolizableProperty(rentStrategy, "Connecticut Avenue", realtor, Color.LightBlue));
             InitializeSquare(10, new JailSquare());
             InitializeSquare(12, new UtilitySquare(rentStrategy, "Electric Company", realtor));
             InitializeSquare(15, new RailroadSquare(rentStrategy, "Pennsylvania Railroad", realtor));

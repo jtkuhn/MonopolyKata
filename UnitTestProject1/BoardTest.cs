@@ -38,6 +38,5 @@ namespace UnitTestProject1
             Assert.True(board.IsPartOfMonopoly((MonopolizableProperty) board.GetSquareAt(1)));
             Assert.True(board.IsPartOfMonopoly((MonopolizableProperty) board.GetSquareAt(3)));
         }
-
     }
 }
