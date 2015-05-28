@@ -26,15 +26,5 @@ namespace MonopolyKata
             }
             Position = board.PlayerLandsOn(this, Position + distance);
         }
-
-        public void Mortgage(Property property)
-        {
-            //if (property.owner == this) property.IsMortgaged = true;
-        }
-
-        public void UnMortgage(Property property)
-        {
-            //if (property.owner == this) property.IsMortgaged = false;
-        }
     }
 }

@@ -38,5 +38,26 @@ namespace UnitTestProject1
             realtor.SetOwnerOf(prop, player2);
             Assert.AreEqual(player2, realtor.GetOwnerOf(prop));
         }
+
+
+
+        [Test]
+        public void WhenPlayerMortagesHisProperty_ItBecomesMortgaged()
+        {
+            Property prop = new Property(new RentStrategyMonopolizable(board), "testProperty", realtor);
+            Assert.IsFalse(prop.IsMortgaged);
+            realtor.Mortgage(prop);
+            Assert.IsTrue(prop.IsMortgaged);
+        }
+
+        [Test]
+        public void WhenPlayerUnmortgagesProperty_ItBecomesUnmortgaged()
+        {
+            Property prop = new Property(new RentStrategyMonopolizable(board), "testProperty", realtor);
+            prop.IsMortgaged = true;
+            Assert.IsTrue(prop.IsMortgaged);
+            realtor.UnMortgage(prop);
+            Assert.IsFalse(prop.IsMortgaged);
+        }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using MonopolyKata.PropertySquares;
 
 namespace MonopolyKata
@@ -13,7 +12,17 @@ namespace MonopolyKata
         {
             ownership = new Dictionary<Square, Player>();
         }
-        
+
+        public void Mortgage(Property property)
+        {
+            property.IsMortgaged = true;
+        }
+
+        public void UnMortgage(Property property)
+        {
+            property.IsMortgaged = false;
+        }
+
         public void SetOwnerOf(Property property, Player player)
         {
             ownership[property] = player;

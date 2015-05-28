@@ -52,8 +52,7 @@ namespace UnitTestProject1
         {
             Assert.AreEqual(1500, player1.Money);
         }
-
-
+        
         [Test]
         public void WhenPlayerMovesPastGo_TheyGet200Dollars()
         {
@@ -61,36 +60,6 @@ namespace UnitTestProject1
             player1.Move(20);
             Assert.AreEqual(10, player1.Position);
             Assert.AreEqual(1700, player1.Money);
-        }
-
-        [Test]
-        public void WhenPlayerMortagesHisProperty_ItBecomesMortgaged()
-        {
-            Property prop = new Property(new RentStrategyMonopolizable(board), "testProperty", realtor);
-            prop.IsLandedOn(player1);
-            Assert.AreEqual(player1, realtor.GetOwnerOf(prop));
-            Assert.IsFalse(prop.IsMortgaged);
-            player1.Mortgage(prop);
-            Assert.IsTrue(prop.IsMortgaged);
-        }
-
-        [Test]
-        public void WhenPlayerUnmortgagesProperty_ItBecomesUnmortgaged()
-        {
-            Property prop = new Property(new RentStrategyMonopolizable(board), "testProperty", realtor);
-            prop.IsLandedOn(player1);
-            prop.IsMortgaged = true;
-            player1.UnMortgage(prop);
-            Assert.IsFalse(prop.IsMortgaged);
-        }
-
-        [Test]
-        public void PlayerMortgage_WillNotChangeUnownedProperty()
-        {
-            Property prop = new Property(new RentStrategyMonopolizable(board), "testProperty", realtor);
-            prop.IsLandedOn(new Player("hi", board));
-            player1.Mortgage(prop);
-            Assert.IsFalse(prop.IsMortgaged);
         }
     }
 }
