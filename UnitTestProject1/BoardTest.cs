@@ -14,24 +14,9 @@ namespace UnitTestProject1
         [SetUp]
         public void Setup()
         {
-            board = new Board();
+            board = new Board(new Realtor());
             player1 = new Player("Hi", board);
             player2 = new Player("hello", board);
-        }
-
-        [Test]
-        public void WhenPlayerOwns0Railroads_GetNumberOfRailroads_Returns0()
-        {
-            Assert.AreEqual(0, board.GetNumberOfRailroads(player1));
-        }
-
-        [Test]
-        public void WhenPlayerOwns2Railroads_GetNumberOfRailroads_Returns2()
-        {
-            player2.Move(5);
-            player2.Move(10);
-            Assert.AreEqual(1100, player2.Money);
-            Assert.AreEqual(2, board.GetNumberOfRailroads(player2));
         }
 
         [Test]

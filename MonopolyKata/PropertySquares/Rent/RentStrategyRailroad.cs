@@ -4,12 +4,12 @@ namespace MonopolyKata.PropertySquares.Rent
 {
     public class RentStrategyRailroad : IRentStrategy
     {
-        private Board board;
+        private Realtor realtor;
         private bool _isMortgaged;
 
-        public RentStrategyRailroad(Board board)
+        public RentStrategyRailroad(Realtor realtor)
         {
-            this.board = board;
+            this.realtor = realtor;
             _isMortgaged = false;
         }
 
@@ -17,7 +17,7 @@ namespace MonopolyKata.PropertySquares.Rent
         {
             if (!_isMortgaged)
             {
-                int rentToBePaid = 25*(int) Math.Pow(2, board.GetNumberOfRailroads(owner) - 1);
+                int rentToBePaid = 25*(int) Math.Pow(2, realtor.GetNumberOfOwnedRailroads(owner) - 1);
                 player.Money -= rentToBePaid;
                 owner.Money += rentToBePaid;
             }

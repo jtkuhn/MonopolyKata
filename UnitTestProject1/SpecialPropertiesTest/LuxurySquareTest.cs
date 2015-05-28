@@ -7,7 +7,7 @@ namespace UnitTestProject1
     [TestFixture]
     public class LuxurySquareTest
     {
-        private Player player1 = new Player("Jill", new Board());
+        private Player player1 = new Player("Jill", new Board(new Realtor()));
         private Square prop1 = new LuxuryTaxSquare();
 
         [Test]

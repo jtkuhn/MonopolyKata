@@ -22,7 +22,7 @@ namespace UnitTestProject1
         public void Init()
         {
             realtor = new Realtor();
-            board = new Mock<Board>();
+            board = new Mock<Board>(realtor);
             player1 = new Player("One", board.Object);
             player2 = new Player("Two", board.Object);
             rentStrategy = new RentStrategyMonopolizable(board.Object);

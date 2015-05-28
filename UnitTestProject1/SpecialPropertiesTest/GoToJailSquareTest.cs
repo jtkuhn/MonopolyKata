@@ -8,14 +8,14 @@ namespace UnitTestProject1
     class GoToJailSquareTest
     {
         private GoToJailSquare gtj = new GoToJailSquare();
-        private Player player1 = new Player("t", new Board());
+        private Player player1 = new Player("t", new Board(new Realtor()));
         private BoardFactory bd = new BoardFactory();
         private Board board;
 
         [SetUp]
         public void Init()
         {
-            board = bd.Create();
+            board = bd.Create(new Realtor());
         }
 
         [Test]

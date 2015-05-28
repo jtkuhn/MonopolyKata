@@ -2,13 +2,13 @@ namespace MonopolyKata.PropertySquares.Rent
 {
     public class RentStrategyUtility : IRentStrategy
     {
-        private Board board;
+        private Realtor realtor;
         private DiceRoller diceRoller;
         private bool _isMortgaged;
 
-        public RentStrategyUtility(DiceRoller diceRoller, Board board)
+        public RentStrategyUtility(DiceRoller diceRoller, Realtor realtor)
         {
-            this.board = board;
+            this.realtor = realtor;
             this.diceRoller = diceRoller;
             _isMortgaged = false;
         }
@@ -19,7 +19,7 @@ namespace MonopolyKata.PropertySquares.Rent
             {
                 int lastRoll = diceRoller.GetLastRoll();
                 int price;
-                if (board.GetNumberOfOwnedUtilities() == 1) price = lastRoll*4;
+                if (realtor.GetNumberOfOwnedUtilities() == 1) price = lastRoll*4;
                 else price = lastRoll*10;
                 landlord.Money += price;
                 tenant.Money -= price;

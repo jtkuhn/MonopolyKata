@@ -18,7 +18,7 @@ namespace UnitTestProject1.SpecialPropertiesTest.RentTests
         public void Setup()
         {
             realtor = new Realtor();
-            mockBoard = new Mock<Board>();
+            mockBoard = new Mock<Board>(realtor);
             rentStrategy = new RentStrategyMonopolizable(mockBoard.Object);
             property = new MonopolizableProperty(rentStrategy, "testProp", realtor, Color.Brown);
         }

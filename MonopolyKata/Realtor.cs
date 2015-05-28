@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using MonopolyKata.PropertySquares;
 
 namespace MonopolyKata
@@ -31,6 +32,16 @@ namespace MonopolyKata
         public Player GetOwnerOf(Property property)
         {
             return ownership.ContainsKey(property) ? ownership[property] : null;
+        }
+
+        public virtual int GetNumberOfOwnedRailroads(Player player)
+        {
+            return ownership.Keys.Where(square => square.GetType() == typeof (RailroadSquare)).Count(square => GetOwnerOf((Property) square) == player);
+        }
+
+        public virtual int GetNumberOfOwnedUtilities()
+        {
+            return ownership.Keys.Count(square => square.GetType() == typeof (UtilitySquare));
         }
     }
 

@@ -13,7 +13,7 @@ namespace UnitTestProject1
         [SetUp]
         public void Init()
         {
-            player1 = new Player("t", new Board());
+            player1 = new Player("t", new Board(new Realtor()));
         }
 
         [Test]

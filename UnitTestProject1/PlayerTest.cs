@@ -19,8 +19,8 @@ namespace UnitTestProject1
         public void Init()
         {
             realtor = new Realtor();
-            board = bd.Create();
-            player1 = new Player("Bob", new Board());
+            board = bd.Create(realtor);
+            player1 = new Player("Bob", new Board(realtor));
         }
 
         [Test]

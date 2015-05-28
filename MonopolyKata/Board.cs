@@ -12,9 +12,9 @@ namespace MonopolyKata
         private IRentStrategy rentStrategy;
         private Realtor realtor;
 
-        public Board()
+        public Board(Realtor realtor)
         {
-            realtor = new Realtor();
+            this.realtor = realtor;
             Size = 40;
             board = new Square[Size];
             for (int i = 0; i < Size; i++)
@@ -50,16 +50,6 @@ namespace MonopolyKata
             int newPosition = position%Size;
             GetSquareAt(newPosition).IsLandedOn(player);
             return newPosition;
-        }
-
-        public virtual int GetNumberOfRailroads(Player player)
-        {
-            return board.OfType<RailroadSquare>().Count(prop => realtor.GetOwnerOf(prop) == player);
-        }
-
-        public virtual int GetNumberOfOwnedUtilities()
-        {
-            return board.OfType<UtilitySquare>().Count(prop => realtor.GetOwnerOf(prop) != null);
         }
 
         public virtual bool IsPartOfMonopoly(MonopolizableProperty property)

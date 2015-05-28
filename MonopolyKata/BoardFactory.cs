@@ -2,9 +2,9 @@
 {
     public class BoardFactory
     {
-        public Board Create()
+        public Board Create(Realtor realtor)
         {
-            return new Board();
+            return new Board(realtor);
         }
     }
 }
