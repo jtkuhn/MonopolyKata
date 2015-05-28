@@ -13,7 +13,6 @@ namespace UnitTestProject1
         private Player player1;
         private Player player2;
         private Property prop;
-        private Property prop2;
         private Mock<Board> board;
         private IRentStrategy rentStrategy;
         private Realtor realtor;
