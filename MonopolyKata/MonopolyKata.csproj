@@ -65,6 +65,7 @@
     <Compile Include="PropertySquares\Properties\UtilitySquare.cs" />
     <Compile Include="Realtor.cs" />
     <Compile Include="PropertySquares\Properties\RailroadSquare.cs" />
+    <Compile Include="RentStrategyFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />

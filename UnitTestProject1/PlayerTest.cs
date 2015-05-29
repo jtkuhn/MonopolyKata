@@ -1,4 +1,5 @@
 ﻿using MonopolyKata;
+using MonopolyKata.PropertySquares.Rent;
 using NUnit.Framework;
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
@@ -16,7 +17,7 @@ namespace UnitTestProject1
         public void Init()
         {
             realtor = new Realtor();
-            board = new Board(realtor, new JailWarden());
+            board = new Board(realtor, new JailWarden(), new DiceRoller());
             player1 = new Player("Bob");
         }
 

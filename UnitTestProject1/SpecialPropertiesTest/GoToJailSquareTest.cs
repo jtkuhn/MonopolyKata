@@ -1,5 +1,6 @@
 ﻿using MonopolyKata;
 using MonopolyKata.PropertySquares;
+using MonopolyKata.PropertySquares.Rent;
 using NUnit.Framework;
 
 namespace UnitTestProject1
@@ -15,7 +16,7 @@ namespace UnitTestProject1
         [SetUp]
         public void Init()
         {
-            board = new Board(new Realtor(), new JailWarden());
+            board = new Board(new Realtor(), new JailWarden(), new DiceRoller());
             player1 = new Player("t");
             jailWarden = new JailWarden();
             jailWarden.SetPositionOfJail(10);

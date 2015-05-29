@@ -14,7 +14,7 @@ namespace MonopolyKata
         public void Setup()
         {
             mockRealtor = new Mock<Realtor>();
-            board = new Board(mockRealtor.Object, new JailWarden());
+            board = new Board(mockRealtor.Object, new JailWarden(), new DiceRoller());
             rentStrategy = new RentStrategyRailroad(mockRealtor.Object);
         }
 

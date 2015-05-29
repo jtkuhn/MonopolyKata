@@ -17,7 +17,7 @@ namespace UnitTestProject1
         public void Setup()
         {
             realtor = new Realtor();
-            board = new Board(realtor, new JailWarden());
+            board = new Board(realtor, new JailWarden(), new DiceRoller());
             prop = new Property(new RentStrategyMonopolizable(board), "hi", realtor);
             player1 = new Player("Bob");
         }

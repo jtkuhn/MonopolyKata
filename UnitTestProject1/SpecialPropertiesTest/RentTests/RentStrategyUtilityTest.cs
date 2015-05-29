@@ -18,7 +18,7 @@ namespace UnitTestProject1.SpecialPropertiesTest.RentTests
         {
             mockDiceRoller = new Mock<DiceRoller>();
             mockRealtor = new Mock<Realtor>();
-            board = new Board(mockRealtor.Object, new JailWarden());
+            board = new Board(mockRealtor.Object, new JailWarden(), mockDiceRoller.Object);
             rentStrategy = new RentStrategyUtility(mockDiceRoller.Object, mockRealtor.Object);
         }
 

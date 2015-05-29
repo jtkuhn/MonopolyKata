@@ -21,7 +21,7 @@ namespace UnitTestProject1
         public void Init()
         {
             realtor = new Realtor();
-            board = new Mock<Board>(realtor, new JailWarden());
+            board = new Mock<Board>(realtor, new JailWarden(), new DiceRoller());
             player1 = new Player("One");
             player2 = new Player("Two");
             rentStrategy = new RentStrategyMonopolizable(board.Object);

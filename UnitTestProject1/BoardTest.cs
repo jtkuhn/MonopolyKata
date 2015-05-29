@@ -1,6 +1,7 @@
 ﻿using MonopolyKata;
 using MonopolyKata.IOC;
 using MonopolyKata.PropertySquares.Properties;
+using MonopolyKata.PropertySquares.Rent;
 using Ninject;
 using NUnit.Framework;
 
@@ -17,7 +18,7 @@ namespace UnitTestProject1
         [SetUp]
         public void Setup()
         {
-            board = new Board(new Realtor(), new JailWarden());
+            board = new Board(new Realtor(), new JailWarden(), new DiceRoller());
             player1 = new Player("Hi");
             player2 = new Player("hello");
         }
