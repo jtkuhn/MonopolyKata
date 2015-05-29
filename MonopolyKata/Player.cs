@@ -1,5 +1,4 @@
 ﻿using System;
-using MonopolyKata.PropertySquares;
 
 namespace MonopolyKata
 {

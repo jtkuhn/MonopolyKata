@@ -1,6 +1,4 @@
 ﻿using MonopolyKata;
-using MonopolyKata.PropertySquares;
-using MonopolyKata.PropertySquares.Rent;
 using NUnit.Framework;
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
