@@ -1,7 +1,6 @@
 ﻿using MonopolyKata;
 using MonopolyKata.PropertySquares;
 using MonopolyKata.PropertySquares.Rent;
-using Moq;
 using NUnit.Framework;
 
 namespace UnitTestProject1
@@ -12,17 +11,15 @@ namespace UnitTestProject1
         private Property rr1;
         private Player player1;
         private Player player2;
-        private Board board;
-        private Mock<IRentStrategy> mockRentStrategy;
+        private IRentStrategy rentStrategy;
         private Realtor realtor;
 
         [SetUp]
         public void Init()
         {
             realtor = new Realtor();
-            mockRentStrategy = new Mock<IRentStrategy>();
-            board = new Board(realtor, new JailWarden());
-            rr1 = new RailroadSquare(mockRentStrategy.Object, "Reading Railroad", realtor);
+            rentStrategy = new RentStrategyRailroad(realtor);
+            rr1 = new RailroadSquare(rentStrategy, "Reading Railroad", realtor);
             player1 = new Player("t");
             player2 = new Player("2");
         }
