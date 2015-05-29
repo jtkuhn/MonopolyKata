@@ -25,7 +25,6 @@ namespace MonopolyKata
             jailWarden = new JailWarden();
             banker = new Banker();
             board = new Board(realtor, jailWarden, banker, diceRoller);
-
             players = new Player[numberOfPlayers];
             RandomlyOrderPlayers(board);
         }
@@ -36,15 +35,6 @@ namespace MonopolyKata
             {
                 PlayOneTurn(currentPlayer);
             }
-        }
-
-        private void RandomlyOrderPlayers(Board board)
-        {
-            for (int j = 0; j < players.Length; j++)
-            {
-                players[j] = new Player("Player " + j);
-            }
-            Shuffle(players);
         }
 
         public void PlayOneTurn(Player player)
@@ -90,6 +80,16 @@ namespace MonopolyKata
             }
         }
 
+        private void RandomlyOrderPlayers(Board board)
+        {
+            for (int j = 0; j < players.Length; j++)
+            {
+                players[j] = new Player("Player " + j);
+            }
+            Shuffle(players);
+        }
+
+
         private void Shuffle(IList<Player> list)
         {
             Random rand = new Random();
@@ -108,7 +108,7 @@ namespace MonopolyKata
         {
             if (jailWarden.IsInJail(player))
             {
-                player.Money -= 50;
+                banker.TakeMoneyFromPlayer(player, 50);
                 jailWarden.GetsOutOfJail(player);
             }
         }
