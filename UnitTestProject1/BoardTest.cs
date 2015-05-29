@@ -1,5 +1,7 @@
 ﻿using MonopolyKata;
+using MonopolyKata.IOC;
 using MonopolyKata.PropertySquares.Properties;
+using Ninject;
 using NUnit.Framework;
 
 namespace UnitTestProject1
@@ -10,6 +12,7 @@ namespace UnitTestProject1
         private Board board;
         private Player player1;
         private Player player2;
+        
 
         [SetUp]
         public void Setup()

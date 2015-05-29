@@ -16,6 +16,7 @@ namespace MonopolyKata
         public Board(Realtor realtor, JailWarden warden)
         {
             jailWarden = warden;
+            this.rentStrategy = rentStrategy;
             jailWarden.SetPositionOfJail(10);
             this.realtor = realtor;
             Size = 40;

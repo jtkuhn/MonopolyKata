@@ -11,12 +11,12 @@ namespace MonopolyKata
         private readonly Board board;
         private Realtor realtor;
         private JailWarden jailWarden;
-        
+
         public Board Board
         {
             get { return board; }
         }
-        
+
         public Game(int numberOfPlayers)
         {
             diceRoller = new DiceRoller();
@@ -28,22 +28,64 @@ namespace MonopolyKata
             RandomlyOrderPlayers(board);
         }
 
-        public void PlayOneTurn()
+        public void PlayOneTurnForAllPlayers()
         {
             foreach (Player currentPlayer in players)
             {
-                int dice = diceRoller.GetNextRoll();
-                board.MovePlayer(currentPlayer, dice);
+                PlayOneTurn(currentPlayer);
             }
         }
 
         private void RandomlyOrderPlayers(Board board)
-        { 
+        {
             for (int j = 0; j < players.Length; j++)
             {
                 players[j] = new Player("Player " + j);
             }
             Shuffle(players);
+        }
+
+        public void PlayOneTurn(Player player)
+        {
+            if (jailWarden.IsInJail(player)) PlayOneTurnInJail(player);
+            else PlayOneTurnOnBoard(player);
+        }
+
+        public void PlayOneTurnOnBoard(Player player)
+        {
+            diceRoller.GetNextRoll();
+            board.MovePlayer(player, diceRoller.GetLastRoll());
+            int doubles = 1;
+            while (diceRoller.WasDoubles() && !jailWarden.IsInJail(player))
+            {
+                diceRoller.GetNextRoll();
+                if (diceRoller.WasDoubles()) doubles++;
+
+                if (doubles == 3) jailWarden.MovePlayerToJail(player);
+                else board.MovePlayer(player, diceRoller.GetLastRoll());
+            }
+        }
+
+        public void PlayOneTurnInJail(Player player)
+        {
+            diceRoller.GetNextRoll();
+
+            if (diceRoller.WasDoubles())
+            {
+                jailWarden.GetsOutOfJail(player);
+                board.MovePlayer(player, diceRoller.GetLastRoll());
+            }
+            else
+            {
+                jailWarden.FailsToEscapeWithDoubles(player);
+
+                if (jailWarden.TurnsInJail(player) > 3)
+                {
+                    player.Money -= 50;
+                    jailWarden.GetsOutOfJail(player);
+                    board.MovePlayer(player, diceRoller.GetLastRoll());
+                }
+            }
         }
 
         private void Shuffle(IList<Player> list)
@@ -58,6 +100,25 @@ namespace MonopolyKata
                 list[k] = list[n];
                 list[n] = value;
             }
+        }
+
+        public void Pay50ToGetOutOfJail(Player player)
+        {
+            if (jailWarden.IsInJail(player))
+            {
+                player.Money -= 50;
+                jailWarden.GetsOutOfJail(player);
+            }
+        }
+
+        public void SetDiceRoller(DiceRoller diceRoller)
+        {
+            this.diceRoller = diceRoller;
+        }
+
+        public JailWarden GetJailWarden()
+        {
+            return jailWarden;
         }
     }
 }

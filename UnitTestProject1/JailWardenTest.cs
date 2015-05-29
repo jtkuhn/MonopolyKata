@@ -41,6 +41,15 @@ namespace UnitTestProject1
         }
 
         [Test]
+        public void WhenPlayerIsMovedToJail_IsInJailReturnsTrue()
+        {
+            Player player1 = new Player("Bob");
+            Assert.IsFalse(jailWarden.IsInJail(player1));
+            jailWarden.MovePlayerToJail(player1);
+            Assert.True(jailWarden.IsInJail(player1));
+        }
+
+        [Test]
         public void WhenPlayerDoesNotEscapeFromJailWithDoubles_TimeInJailIncrements()
         {
             Player player1 = new Player("Bob");

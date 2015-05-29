@@ -13,7 +13,7 @@ namespace MonopolyKata.PropertySquares.Rent
             rand = new Random();
         }
 
-        public int GetNextRoll()
+        public virtual int GetNextRoll()
         {
             RollTwoDice();
             return die1 + die2;
@@ -24,7 +24,7 @@ namespace MonopolyKata.PropertySquares.Rent
             return die1 + die2;
         }
 
-        public bool WasDoubles()
+        public virtual bool WasDoubles()
         {
             return (die1 == die2);
         }
