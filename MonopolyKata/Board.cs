@@ -42,6 +42,7 @@ namespace MonopolyKata
             InitializeSquare(28, new UtilitySquare(rsFactory.CreateUtilityStrategy(diceRoller), banker, "Water Works", realtor));
             InitializeSquare(30, new GoToJailSquare(jailWarden));
             InitializeSquare(35, new RailroadSquare(rsFactory.CreateRailroadStrategy(), banker, "Short Line", realtor));
+            InitializeSquare(38, new LuxuryTaxSquare(banker));
         }
 
         private void InitializeSquare(int position, Square square)
