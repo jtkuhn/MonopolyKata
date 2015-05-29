@@ -1,8 +1,6 @@
 ﻿using MonopolyKata;
-using MonopolyKata.IOC;
 using MonopolyKata.PropertySquares.Properties;
 using MonopolyKata.PropertySquares.Rent;
-using Ninject;
 using NUnit.Framework;
 
 namespace UnitTestProject1

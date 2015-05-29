@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using MonopolyKata;
+﻿using MonopolyKata;
 using MonopolyKata.PropertySquares.Rent;
 using Moq;
 using NUnit.Framework;
