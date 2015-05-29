@@ -12,34 +12,36 @@ namespace MonopolyKata
         private RentStrategyFactory rsFactory;
         private Realtor realtor;
         private JailWarden jailWarden;
+        private Banker banker;
 
-        public Board(Realtor realtor, JailWarden warden, DiceRoller diceRoller)
+        public Board(Realtor realtor, JailWarden warden, Banker banker, DiceRoller diceRoller)
         {
+            this.banker = banker;
             jailWarden = warden;
             jailWarden.SetPositionOfJail(10);
-            rsFactory = new RentStrategyFactory();
             this.realtor = realtor;
+            rsFactory = new RentStrategyFactory(realtor);
             Size = 40;
             board = new Square[Size];
             for (int i = 0; i < Size; i++)
             {
                 board[i] = new Square("Property " + i);
             }
-            InitializeSquare(0, new GoSquare());
-            InitializeSquare(1, new MonopolizableProperty(rsFactory.CreateMonopolizableStrategy(this), "Mediterranean Avenue", realtor, Color.Brown));
-            InitializeSquare(3, new MonopolizableProperty(rsFactory.CreateMonopolizableStrategy(this), "Baltic Avenue", realtor, Color.Brown));
-            InitializeSquare(4, new IncomeTaxSquare());
-            InitializeSquare(5, new RailroadSquare(rsFactory.CreateRailroadStrategy(realtor), "Reading Railroad", realtor));
-            InitializeSquare(6, new MonopolizableProperty(rsFactory.CreateMonopolizableStrategy(this), "Oriental Avenue", realtor, Color.LightBlue));
-            InitializeSquare(8, new MonopolizableProperty(rsFactory.CreateMonopolizableStrategy(this), "Vermont Avenue", realtor, Color.LightBlue));
-            InitializeSquare(9, new MonopolizableProperty(rsFactory.CreateMonopolizableStrategy(this), "Connecticut Avenue", realtor, Color.LightBlue));
+            InitializeSquare(0, new GoSquare(banker));
+            InitializeSquare(1, new MonopolizableProperty(rsFactory.CreateMonopolizableStrategy(this), banker, "Mediterranean Avenue", realtor, Color.Brown));
+            InitializeSquare(3, new MonopolizableProperty(rsFactory.CreateMonopolizableStrategy(this), banker, "Baltic Avenue", realtor, Color.Brown));
+            InitializeSquare(4, new IncomeTaxSquare(banker));
+            InitializeSquare(5, new RailroadSquare(rsFactory.CreateRailroadStrategy(), banker, "Reading Railroad", realtor));
+            InitializeSquare(6, new MonopolizableProperty(rsFactory.CreateMonopolizableStrategy(this), banker, "Oriental Avenue", realtor, Color.LightBlue));
+            InitializeSquare(8, new MonopolizableProperty(rsFactory.CreateMonopolizableStrategy(this), banker, "Vermont Avenue", realtor, Color.LightBlue));
+            InitializeSquare(9, new MonopolizableProperty(rsFactory.CreateMonopolizableStrategy(this), banker, "Connecticut Avenue", realtor, Color.LightBlue));
             InitializeSquare(10, new JailSquare());
-            InitializeSquare(12, new UtilitySquare(rsFactory.CreateUtilityStrategy(diceRoller, realtor), "Electric Company", realtor));
-            InitializeSquare(15, new RailroadSquare(rsFactory.CreateRailroadStrategy(realtor), "Pennsylvania Railroad", realtor));
-            InitializeSquare(25, new RailroadSquare(rsFactory.CreateRailroadStrategy(realtor), "B & O Railroad", realtor));
-            InitializeSquare(28, new UtilitySquare(rsFactory.CreateUtilityStrategy(diceRoller, realtor), "Water Works", realtor));
+            InitializeSquare(12, new UtilitySquare(rsFactory.CreateUtilityStrategy(diceRoller), banker, "Electric Company", realtor));
+            InitializeSquare(15, new RailroadSquare(rsFactory.CreateRailroadStrategy(), banker, "Pennsylvania Railroad", realtor));
+            InitializeSquare(25, new RailroadSquare(rsFactory.CreateRailroadStrategy(), banker, "B & O Railroad", realtor));
+            InitializeSquare(28, new UtilitySquare(rsFactory.CreateUtilityStrategy(diceRoller), banker, "Water Works", realtor));
             InitializeSquare(30, new GoToJailSquare(jailWarden));
-            InitializeSquare(35, new RailroadSquare(rsFactory.CreateRailroadStrategy(realtor), "Short Line", realtor));
+            InitializeSquare(35, new RailroadSquare(rsFactory.CreateRailroadStrategy(), banker, "Short Line", realtor));
         }
 
         private void InitializeSquare(int position, Square square)

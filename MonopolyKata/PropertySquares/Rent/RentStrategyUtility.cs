@@ -13,7 +13,7 @@ namespace MonopolyKata.PropertySquares.Rent
             _isMortgaged = false;
         }
 
-        public void GetRent(Player landlord, Player tenant)
+        public int GetRent(Player landlord, Player tenant)
         {
             if (!_isMortgaged)
             {
@@ -21,9 +21,9 @@ namespace MonopolyKata.PropertySquares.Rent
                 int price;
                 if (realtor.GetNumberOfOwnedUtilities() == 1) price = lastRoll*4;
                 else price = lastRoll*10;
-                landlord.Money += price;
-                tenant.Money -= price;
+                return price;
             }
+            return 0;
         }
 
         public void GetMortgageStatus(bool isMortgaged)

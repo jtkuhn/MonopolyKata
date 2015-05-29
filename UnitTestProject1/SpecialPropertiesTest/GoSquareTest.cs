@@ -7,7 +7,7 @@ namespace UnitTestProject1
     [TestFixture]
     public class GoSquareTest
     {
-        private Square gs = new GoSquare();
+        private Square gs = new GoSquare(new Banker());
         private Player player1;
 
         [SetUp]

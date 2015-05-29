@@ -11,6 +11,7 @@ namespace MonopolyKata
         private readonly Board board;
         private Realtor realtor;
         private JailWarden jailWarden;
+        private Banker banker;
 
         public Board Board
         {
@@ -22,7 +23,8 @@ namespace MonopolyKata
             diceRoller = new DiceRoller();
             realtor = new Realtor();
             jailWarden = new JailWarden();
-            board = new Board(realtor, jailWarden, diceRoller);
+            banker = new Banker();
+            board = new Board(realtor, jailWarden, banker, diceRoller);
 
             players = new Player[numberOfPlayers];
             RandomlyOrderPlayers(board);
@@ -81,7 +83,7 @@ namespace MonopolyKata
 
                 if (jailWarden.TurnsInJail(player) > 3)
                 {
-                    player.Money -= 50;
+                    banker.TakeMoneyFromPlayer(player, 50);
                     jailWarden.GetsOutOfJail(player);
                     board.MovePlayer(player, diceRoller.GetLastRoll());
                 }

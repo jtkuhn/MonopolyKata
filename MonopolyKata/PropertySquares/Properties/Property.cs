@@ -7,12 +7,14 @@ namespace MonopolyKata.PropertySquares
         public int cost;
         public int rent;
         protected readonly IRentStrategy rentStrategy;
+        protected Banker banker;
         protected Realtor realtor;
 
         public bool IsMortgaged { get; set; }
 
-        public Property(IRentStrategy rentStrat, string nm, Realtor realtor, int cost = 0, int rent = 0) : base(nm)
+        public Property(IRentStrategy rentStrat, Banker banker, string nm, Realtor realtor, int cost = 0, int rent = 0) : base(nm)
         {
+            this.banker = banker;
             this.realtor = realtor;
             IsMortgaged = false;
             rentStrategy = rentStrat;
@@ -25,8 +27,9 @@ namespace MonopolyKata.PropertySquares
             if (realtor.GetOwnerOf(this) != null)
             {
                 rentStrategy.GetMortgageStatus(IsMortgaged);
-                rentStrategy.GetRent(realtor.GetOwnerOf(this), player);
-                
+                int rent = rentStrategy.GetRent(realtor.GetOwnerOf(this), player);
+                banker.TransferMoney(realtor.GetOwnerOf(this), player, rent);
+
             }
             else
             {

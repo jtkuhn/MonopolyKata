@@ -2,18 +2,21 @@
 {
     public class GoSquare : Square
     {
-        public GoSquare() : base("Go")
+        private Banker banker;
+
+        public GoSquare(Banker banker) : base("Go")
         {
+            this.banker = banker;
         }
 
         public override void IsLandedOn(Player player)
         {
-            player.Money += 200;
+            banker.GiveMoneyToPlayer(player, 200);
         }
 
         public override void IsPassedBy(Player player)
         {
-            player.Money += 200;
+            banker.GiveMoneyToPlayer(player, 200);
         }
 
     }

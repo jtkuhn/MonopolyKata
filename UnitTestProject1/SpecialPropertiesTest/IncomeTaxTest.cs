@@ -8,7 +8,7 @@ namespace UnitTestProject1
     public class IncomeTaxTest
     {
         private Player player1;
-        private Square prop = new IncomeTaxSquare();
+        private Square prop = new IncomeTaxSquare(new Banker());
 
         [SetUp]
         public void Init()

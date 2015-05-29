@@ -6,7 +6,7 @@ namespace MonopolyKata.PropertySquares.Properties
     {
         public Color Color;
 
-        public MonopolizableProperty(IRentStrategy rentStrat, string nm, Realtor realtor, Color c, int cost = 0, int rent = 0) : base(rentStrat, nm, realtor, cost: cost, rent: rent)
+        public MonopolizableProperty(IRentStrategy rentStrat, Banker banker, string nm, Realtor realtor, Color c, int cost = 0, int rent = 0) : base(rentStrat, banker, nm, realtor, cost: cost, rent: rent)
         {
             Color = c;
         }
@@ -17,7 +17,9 @@ namespace MonopolyKata.PropertySquares.Properties
             {
                 ((RentStrategyMonopolizable)rentStrategy).SetRent(this);
                 rentStrategy.GetMortgageStatus(IsMortgaged);
-                rentStrategy.GetRent(realtor.GetOwnerOf(this), player);
+                int rent = rentStrategy.GetRent(realtor.GetOwnerOf(this), player);
+                banker.TransferMoney(realtor.GetOwnerOf(this), player, rent);
+
             }
             else
             {

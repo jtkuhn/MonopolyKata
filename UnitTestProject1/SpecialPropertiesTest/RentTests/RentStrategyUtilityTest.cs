@@ -18,7 +18,7 @@ namespace UnitTestProject1.SpecialPropertiesTest.RentTests
         {
             mockDiceRoller = new Mock<DiceRoller>();
             mockRealtor = new Mock<Realtor>();
-            board = new Board(mockRealtor.Object, new JailWarden(), mockDiceRoller.Object);
+            board = new Board(mockRealtor.Object, new JailWarden(), new Banker(), mockDiceRoller.Object);
             rentStrategy = new RentStrategyUtility(mockDiceRoller.Object, mockRealtor.Object);
         }
 
@@ -28,8 +28,7 @@ namespace UnitTestProject1.SpecialPropertiesTest.RentTests
             mockRealtor.Setup(x => x.GetNumberOfOwnedUtilities()).Returns(1);
             mockDiceRoller.Setup(x => x.GetLastRoll()).Returns(5);
             Player player1 = new Player("testPlayer1");
-            rentStrategy.GetRent(new Player("bob"), player1);
-            Assert.AreEqual(1480, player1.Money);
+            Assert.AreEqual(20, rentStrategy.GetRent(new Player("bob"), player1));
         }
 
         [Test]
@@ -39,9 +38,7 @@ namespace UnitTestProject1.SpecialPropertiesTest.RentTests
             mockDiceRoller.Setup(x => x.GetLastRoll()).Returns(6);
             Player player1 = new Player("playerWhoLosesMoney");
             Player player2 = new Player("ownerWhoGetsMoney");
-            rentStrategy.GetRent(player1, player2);
-            Assert.AreEqual(1560, player1.Money);
-            Assert.AreEqual(1440, player2.Money);
+            Assert.AreEqual(60, rentStrategy.GetRent(player1, player2));
 
         }
     }

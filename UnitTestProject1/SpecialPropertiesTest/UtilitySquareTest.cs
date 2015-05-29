@@ -13,7 +13,7 @@ namespace UnitTestProject1.SpecialPropertiesTest
         [SetUp]
         public void Setup()
         {
-            board = new Board(new Realtor(), new JailWarden(), new DiceRoller());
+            board = new Board(new Realtor(), new JailWarden(), new Banker(),  new DiceRoller());
             player = new Player("Tester");
         }
     }

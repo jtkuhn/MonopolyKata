@@ -15,13 +15,13 @@ namespace MonopolyKata.PropertySquares.Rent
             rent = 0;
         }
 
-        public void GetRent(Player owner, Player player)
+        public int GetRent(Player owner, Player player)
         {
             if (!_isMortgaged)
             {
-                player.Money -= rent;
-                owner.Money += rent;
+                return rent;
             }
+            return 0;
         }
 
         public void GetMortgageStatus(bool isMortgaged)

@@ -2,13 +2,16 @@
 {
     public class LuxuryTaxSquare : Square
     {
-        public LuxuryTaxSquare() : base("Luxury Tax")
+        private Banker banker;
+
+        public LuxuryTaxSquare(Banker banker) : base("Luxury Tax")
         {
+            this.banker = banker;
         }
 
         public override void IsLandedOn(Player player)
         {
-            player.Money -= 75;
+            banker.TakeMoneyFromPlayer(player, 75);
         }
     }
 }

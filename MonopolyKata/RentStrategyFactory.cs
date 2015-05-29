@@ -4,12 +4,19 @@ namespace MonopolyKata
 {
     public class RentStrategyFactory
     {
-        public IRentStrategy CreateRailroadStrategy(Realtor realtor)
+        private Realtor realtor;
+
+        public RentStrategyFactory(Realtor realtor)
+        {
+            this.realtor = realtor;
+        }
+
+        public IRentStrategy CreateRailroadStrategy()
         {
             return new RentStrategyRailroad(realtor);
         }
 
-        public IRentStrategy CreateUtilityStrategy(DiceRoller diceRoller, Realtor realtor)
+        public IRentStrategy CreateUtilityStrategy(DiceRoller diceRoller)
         {
             return new RentStrategyUtility(diceRoller, realtor);
         }

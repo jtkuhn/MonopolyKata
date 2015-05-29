@@ -14,7 +14,7 @@ namespace MonopolyKata
         public void Setup()
         {
             mockRealtor = new Mock<Realtor>();
-            board = new Board(mockRealtor.Object, new JailWarden(), new DiceRoller());
+            board = new Board(mockRealtor.Object, new JailWarden(), new Banker(), new DiceRoller());
             rentStrategy = new RentStrategyRailroad(mockRealtor.Object);
         }
 
@@ -23,8 +23,7 @@ namespace MonopolyKata
         {
             mockRealtor.Setup(x => x.GetNumberOfOwnedRailroads(It.IsAny<Player>())).Returns(1);
             Player player1 = new Player("hi");
-            rentStrategy.GetRent(new Player("bob"), player1);
-            Assert.AreEqual(1475, player1.Money);
+            Assert.AreEqual(25, rentStrategy.GetRent(new Player("bob"), player1));
         }
 
         [Test]
@@ -32,8 +31,7 @@ namespace MonopolyKata
         {
             mockRealtor.Setup(x => x.GetNumberOfOwnedRailroads(It.IsAny<Player>())).Returns(3);
             Player player1 = new Player("whatever");
-            rentStrategy.GetRent(new Player("bob"), player1);
-            Assert.AreEqual(1400, player1.Money);
+            Assert.AreEqual(100, rentStrategy.GetRent(new Player("bob"), player1));
         }
     }
 }

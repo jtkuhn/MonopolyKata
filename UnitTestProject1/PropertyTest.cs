@@ -21,17 +21,17 @@ namespace UnitTestProject1
         public void Init()
         {
             realtor = new Realtor();
-            board = new Mock<Board>(realtor, new JailWarden(), new DiceRoller());
+            board = new Mock<Board>(realtor, new JailWarden(), new Banker(), new DiceRoller());
             player1 = new Player("One");
             player2 = new Player("Two");
             rentStrategy = new RentStrategyMonopolizable(board.Object);
-            prop = new MonopolizableProperty(rentStrategy, "TestProperty", realtor, Color.Brown, 100, 20);
+            prop = new MonopolizableProperty(rentStrategy, new Banker(), "TestProperty", realtor, Color.Brown, 100, 20);
         }
 
         [Test]
         public void WhenConstructorFires_PropertiesAreCorrectlyInitialized()
         {
-            Property BoardWalk = new Property(rentStrategy, "BoardWalk", realtor, cost: 10000000, rent: 2);
+            Property BoardWalk = new Property(rentStrategy, new Banker(), "BoardWalk", realtor, cost: 10000000, rent: 2);
             Assert.AreEqual("BoardWalk", BoardWalk.Name);
             Assert.Null(realtor.GetOwnerOf(prop));
         }

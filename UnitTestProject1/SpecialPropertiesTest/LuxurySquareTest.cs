@@ -8,7 +8,7 @@ namespace UnitTestProject1
     public class LuxurySquareTest
     {
         private Player player1 = new Player("Jill");
-        private Square prop1 = new LuxuryTaxSquare();
+        private Square prop1 = new LuxuryTaxSquare(new Banker());
 
         [Test]
         public void WhenLuxuryTaxIsLandedOn_PlayerLoses75Dollars()

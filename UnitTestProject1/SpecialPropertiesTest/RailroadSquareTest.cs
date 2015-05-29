@@ -19,7 +19,7 @@ namespace UnitTestProject1
         {
             realtor = new Realtor();
             rentStrategy = new RentStrategyRailroad(realtor);
-            rr1 = new RailroadSquare(rentStrategy, "Reading Railroad", realtor);
+            rr1 = new RailroadSquare(rentStrategy, new Banker(), "Reading Railroad", realtor);
             player1 = new Player("t");
             player2 = new Player("2");
         }

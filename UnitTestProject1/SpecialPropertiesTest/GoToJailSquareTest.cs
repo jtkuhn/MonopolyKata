@@ -16,7 +16,7 @@ namespace UnitTestProject1
         [SetUp]
         public void Init()
         {
-            board = new Board(new Realtor(), new JailWarden(), new DiceRoller());
+            board = new Board(new Realtor(), new JailWarden(), new Banker(),  new DiceRoller());
             player1 = new Player("t");
             jailWarden = new JailWarden();
             jailWarden.SetPositionOfJail(10);

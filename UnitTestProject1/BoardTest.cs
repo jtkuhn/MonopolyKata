@@ -18,7 +18,7 @@ namespace UnitTestProject1
         [SetUp]
         public void Setup()
         {
-            board = new Board(new Realtor(), new JailWarden(), new DiceRoller());
+            board = new Board(new Realtor(), new JailWarden(), new Banker(), new DiceRoller());
             player1 = new Player("Hi");
             player2 = new Player("hello");
         }

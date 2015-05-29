@@ -17,7 +17,7 @@ namespace UnitTestProject1
         public void Init()
         {
             realtor = new Realtor();
-            board = new Board(realtor, new JailWarden(), new DiceRoller());
+            board = new Board(realtor, new JailWarden(), new Banker(), new DiceRoller());
             player1 = new Player("Bob");
         }
 

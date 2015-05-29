@@ -13,14 +13,16 @@ namespace UnitTestProject1.SpecialPropertiesTest.RentTests
         private MonopolizableProperty property;
         private Mock<Board> mockBoard;
         private Realtor realtor;
+        private Banker banker;
 
         [SetUp]
         public void Setup()
         {
+            banker = new Banker();
             realtor = new Realtor();
-            mockBoard = new Mock<Board>(realtor, new JailWarden(), new DiceRoller());
+            mockBoard = new Mock<Board>(realtor, new JailWarden(), banker, new DiceRoller());
             rentStrategy = new RentStrategyMonopolizable(mockBoard.Object);
-            property = new MonopolizableProperty(rentStrategy, "testProp", realtor, Color.Brown);
+            property = new MonopolizableProperty(rentStrategy, banker, "testProp", realtor, Color.Brown);
         }
 
         [Test]
@@ -30,8 +32,7 @@ namespace UnitTestProject1.SpecialPropertiesTest.RentTests
             mockBoard.Setup(x => x.IsPartOfMonopoly(property)).Returns(false);
             Player player1 = new Player("Fred");
             ((RentStrategyMonopolizable) rentStrategy).SetRent(property);
-            rentStrategy.GetRent(new Player("Freddie"), player1);
-            Assert.AreEqual(1482, player1.Money);
+            Assert.AreEqual(18, rentStrategy.GetRent(new Player("Freddie"), player1));
         }
 
         [Test]
@@ -41,8 +42,7 @@ namespace UnitTestProject1.SpecialPropertiesTest.RentTests
             mockBoard.Setup(x => x.IsPartOfMonopoly(property)).Returns(true);
             Player player1 = new Player("Bob");
             ((RentStrategyMonopolizable) rentStrategy).SetRent(property);
-            rentStrategy.GetRent(new Player("hi"), player1);
-            Assert.AreEqual(1464, player1.Money);
+            Assert.AreEqual(36, rentStrategy.GetRent(new Player("hi"), player1));
         }
     }
 }
