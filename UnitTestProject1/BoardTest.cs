@@ -49,5 +49,15 @@ namespace UnitTestProject1
             Assert.AreEqual(-1, board.GetIndexOf("Go Directly To Jail")); //not the right name
             Assert.AreEqual(30, board.GetIndexOf("Go To Jail"));
         }
+
+        [Test]
+        public void MovingAPlayerBackwards_DoesNotPassByAnySquares_ButDoesLandOnTheSquare()
+        {
+            Assert.AreEqual(0, player1.Position);
+            board.MovePlayer(player1, 1);
+            board.MovePlayer(player1, -3); //moves him backwards past go and onto luxury tax
+            Assert.AreEqual(1425, player1.Money); //does not collect $200 and does pay $75 fine
+
+        }
     }
 }

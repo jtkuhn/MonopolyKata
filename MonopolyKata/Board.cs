@@ -63,7 +63,7 @@ namespace MonopolyKata
 
         public int PlayerLandsOn(Player player, int position)
         {
-            int newPosition = position%Size;
+            int newPosition = (position+Size)%Size;
             GetSquareAt(newPosition).IsLandedOn(player);
             return newPosition;
         }
