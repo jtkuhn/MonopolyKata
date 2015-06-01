@@ -119,6 +119,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="IntegrationTests\" />
     <Folder Include="IOC\" />
   </ItemGroup>
   <Choose>

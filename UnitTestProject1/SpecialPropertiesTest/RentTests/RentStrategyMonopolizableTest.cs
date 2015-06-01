@@ -1,4 +1,5 @@
 ﻿using MonopolyKata;
+using MonopolyKata.Cards;
 using MonopolyKata.PropertySquares.Properties;
 using MonopolyKata.PropertySquares.Rent;
 using Moq;
@@ -14,13 +15,14 @@ namespace UnitTestProject1.SpecialPropertiesTest.RentTests
         private Mock<Board> mockBoard;
         private Realtor realtor;
         private Banker banker;
+        private CardDealer dealer;
 
         [SetUp]
         public void Setup()
         {
             banker = new Banker();
             realtor = new Realtor();
-            mockBoard = new Mock<Board>(realtor, new JailWarden(), banker, new DiceRoller());
+            mockBoard = new Mock<Board>(realtor, new JailWarden(), banker, dealer, new DiceRoller());
             rentStrategy = new RentStrategyMonopolizable(mockBoard.Object);
             property = new MonopolizableProperty(rentStrategy, banker, "testProp", realtor, Color.Brown);
         }

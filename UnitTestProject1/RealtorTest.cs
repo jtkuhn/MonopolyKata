@@ -1,4 +1,5 @@
 ﻿using MonopolyKata;
+using MonopolyKata.Cards;
 using MonopolyKata.PropertySquares;
 using MonopolyKata.PropertySquares.Rent;
 using NUnit.Framework;
@@ -13,13 +14,14 @@ namespace UnitTestProject1
         private Property prop;
         private Player player1;
         private Banker banker;
+        private CardDealer dealer;
 
         [SetUp]
         public void Setup()
         {
             banker = new Banker();
             realtor = new Realtor();
-            board = new Board(realtor, new JailWarden(), banker, new DiceRoller());
+            board = new Board(realtor, new JailWarden(), banker, dealer, new DiceRoller());
             prop = new Property(new RentStrategyMonopolizable(board), banker, "hi", realtor);
             player1 = new Player("Bob");
         }

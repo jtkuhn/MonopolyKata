@@ -26,7 +26,7 @@ namespace MonopolyKata
             realtor = new Realtor();
             jailWarden = new JailWarden();
             banker = new Banker();
-            board = new Board(realtor, jailWarden, banker, diceRoller);
+            board = new Board(realtor, jailWarden, banker, dealer, diceRoller);
             dealer = new CardDealer(banker, jailWarden, board);
             players = new Player[numberOfPlayers];
             RandomlyOrderPlayers(board);

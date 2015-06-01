@@ -19,7 +19,7 @@ namespace UnitTestProject1
         {
             banker = new Banker();
             jailWarden = new JailWarden();
-            board = new Board(realtor, jailWarden, banker, new DiceRoller());
+            board = new Board(realtor, jailWarden, banker, dealer, new DiceRoller());
             dealer = new CardDealer(banker, jailWarden, board);
         }
 

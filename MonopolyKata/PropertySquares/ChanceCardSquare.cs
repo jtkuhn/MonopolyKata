@@ -5,6 +5,7 @@ namespace MonopolyKata.PropertySquares
     public class ChanceCardSquare : Square
     {
         private CardDealer dealer; 
+
         public ChanceCardSquare(CardDealer cardDealer) : base("Chance")
         {
             dealer = cardDealer;

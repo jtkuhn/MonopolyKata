@@ -1,4 +1,5 @@
 ﻿using MonopolyKata;
+using MonopolyKata.Cards;
 using MonopolyKata.PropertySquares.Rent;
 using Moq;
 using NUnit.Framework;
@@ -11,14 +12,12 @@ namespace UnitTestProject1.SpecialPropertiesTest.RentTests
         private IRentStrategy rentStrategy;
         private Mock<Realtor> mockRealtor;
         private Mock<DiceRoller> mockDiceRoller;
-        private Board board;
 
         [SetUp]
         public void Setup()
         {
             mockDiceRoller = new Mock<DiceRoller>();
             mockRealtor = new Mock<Realtor>();
-            board = new Board(mockRealtor.Object, new JailWarden(), new Banker(), mockDiceRoller.Object);
             rentStrategy = new RentStrategyUtility(mockDiceRoller.Object, mockRealtor.Object);
         }
 

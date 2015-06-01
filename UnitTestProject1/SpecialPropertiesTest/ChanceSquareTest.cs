@@ -12,6 +12,7 @@ namespace UnitTestProject1.SpecialPropertiesTest
     {
         private Mock<CardDealer> mockDealer;
         private ChanceCardSquare chanceSquare;
+        private CardDealer dealer;
 
         [SetUp]
         public void Setup()
@@ -19,7 +20,7 @@ namespace UnitTestProject1.SpecialPropertiesTest
             
             Banker banker = new Banker();
             JailWarden jailWarden = new JailWarden();
-            Board board = new Board(new Realtor(), jailWarden, banker, new DiceRoller());
+            Board board = new Board(new Realtor(), jailWarden, banker, dealer, new DiceRoller());
             mockDealer = new Mock<CardDealer>(banker, jailWarden, board);
             chanceSquare = new ChanceCardSquare(mockDealer.Object);
         }

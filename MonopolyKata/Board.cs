@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using MonopolyKata.Cards;
 using MonopolyKata.PropertySquares;
 using MonopolyKata.PropertySquares.Properties;
 using MonopolyKata.PropertySquares.Rent;
@@ -14,9 +15,11 @@ namespace MonopolyKata
         private Realtor realtor;
         private JailWarden jailWarden;
         private Banker banker;
+        private CardDealer dealer;
 
-        public Board(Realtor realtor, JailWarden warden, Banker banker, DiceRoller diceRoller)
+        public Board(Realtor realtor, JailWarden warden, Banker banker, CardDealer dealer, DiceRoller diceRoller)
         {
+            this.dealer = dealer;
             this.banker = banker;
             jailWarden = warden;
             jailWarden.SetPositionOfJail(10);

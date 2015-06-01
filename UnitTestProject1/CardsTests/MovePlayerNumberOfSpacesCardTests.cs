@@ -13,11 +13,12 @@ namespace UnitTestProject1.CardsTests
         private Mock<Board> mockBoard;
         private Mock<Player> mockPlayer;
         private Card testCard;
+        private CardDealer dealer;
 
         [SetUp]
         public void Setup()
         {
-            mockBoard = new Mock<Board>(new Realtor(), new JailWarden(), new Banker(), new DiceRoller());
+            mockBoard = new Mock<Board>(new Realtor(), new JailWarden(), new Banker(), dealer, new DiceRoller());
             mockPlayer = new Mock<Player>("Bob");
 
             testCard = new MovePlayerNumberOfSpacesCard("Test Card", mockBoard.Object, 5);

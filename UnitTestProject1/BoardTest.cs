@@ -1,4 +1,5 @@
 ﻿using MonopolyKata;
+using MonopolyKata.Cards;
 using MonopolyKata.PropertySquares.Properties;
 using MonopolyKata.PropertySquares.Rent;
 using NUnit.Framework;
@@ -11,12 +12,12 @@ namespace UnitTestProject1
         private Board board;
         private Player player1;
         private Player player2;
-        
+        private CardDealer dealer;
 
         [SetUp]
         public void Setup()
         {
-            board = new Board(new Realtor(), new JailWarden(), new Banker(), new DiceRoller());
+            board = new Board(new Realtor(), new JailWarden(), new Banker(), dealer, new DiceRoller());
             player1 = new Player("Hi");
             player2 = new Player("hello");
         }
