@@ -13,6 +13,7 @@ namespace MonopolyKata
         private Realtor realtor;
         private JailWarden jailWarden;
         private Banker banker;
+        private CardDealer dealer;
 
         public Board Board
         {
@@ -26,6 +27,7 @@ namespace MonopolyKata
             jailWarden = new JailWarden();
             banker = new Banker();
             board = new Board(realtor, jailWarden, banker, diceRoller);
+            dealer = new CardDealer(banker, jailWarden, board);
             players = new Player[numberOfPlayers];
             RandomlyOrderPlayers(board);
         }
@@ -81,21 +83,29 @@ namespace MonopolyKata
             }
         }
 
-        public void UseGetOutOfJailFreeCard(Player player)
+        public bool UseGetOutOfJailFreeCard(Player player)
         {
             if (jailWarden.IsInJail(player))
             {
-                //
+                if (dealer.OwnsAGetOutOfJailCard(player))
+                {
+                    dealer.UsesAGetOutOfJailCard(player);
+                    jailWarden.GetsOutOfJail(player);
+                    return true;
+                }
             }
+            return false;
         }
 
-        public void Pay50ToGetOutOfJail(Player player)
+        public bool Pay50ToGetOutOfJail(Player player)
         {
             if (jailWarden.IsInJail(player))
             {
                 banker.TakeMoneyFromPlayer(player, 50);
                 jailWarden.GetsOutOfJail(player);
+                return true;
             }
+            return false;
         }
 
         public void SetDiceRoller(DiceRoller diceRoller)
@@ -131,6 +141,11 @@ namespace MonopolyKata
         public JailWarden GetJailWarden()
         {
             return jailWarden;
+        }
+
+        public CardDealer GetCardDealer()
+        {
+            return dealer;
         }
     }
 }

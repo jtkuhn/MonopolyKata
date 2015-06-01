@@ -45,7 +45,7 @@ namespace MonopolyKata.Cards
             getOutOfJailDictionary["community chest"] = player;
         }
 
-        public bool OwnsAGetOutOfJailCard(Player player)
+        public virtual bool OwnsAGetOutOfJailCard(Player player)
         {
             return getOutOfJailDictionary.ContainsValue(player);
         }
@@ -103,6 +103,7 @@ namespace MonopolyKata.Cards
             AddCardToChancePile(new SendPlayerToJailCard("Go Directly To Jail", jailWarden));
             AddCardToChancePile(new TakeMoneyFromPlayerCard("Pay Poor Tax of $15", banker, 15));
             AddCardToChancePile(new PayPlayerMoneyCard("You Have Won a Crossword Competition - Collect $100", banker, 100));
+            AddCardToChancePile(new GetOutOfJailCard());
 
             ShufflePile(chanceCards);
 
@@ -121,6 +122,7 @@ namespace MonopolyKata.Cards
             AddCardToCommunityChestPile(new PayPlayerMoneyCard("Receive $25 Consultancy Fee", banker, 25));
             AddCardToCommunityChestPile(new PayPlayerMoneyCard("You Have Won Second Prize in a Beauty Contest - Collect $10", banker, 10));
             AddCardToCommunityChestPile(new PayPlayerMoneyCard("You Inherit $100", banker, 100));
+            AddCardToCommunityChestPile(new GetOutOfJailCard());
 
             ShufflePile(communityChestCards);
         }

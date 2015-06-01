@@ -68,6 +68,7 @@
     <Compile Include="JailWarden.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="PropertySquares\ChanceCardSquare.cs" />
+    <Compile Include="PropertySquares\CommunityChestCardSquare.cs" />
     <Compile Include="PropertySquares\Properties\MonopolizableProperty.cs" />
     <Compile Include="PropertySquares\Rent\RentStrategyMonopolizable.cs" />
     <Compile Include="PropertySquares\Rent\RentStrategyUtility.cs" />

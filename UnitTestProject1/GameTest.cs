@@ -1,4 +1,5 @@
 ﻿using MonopolyKata;
+using MonopolyKata.Cards;
 using MonopolyKata.PropertySquares.Rent;
 using Moq;
 using NUnit.Framework;
@@ -11,12 +12,14 @@ namespace UnitTestProject1
         private Game game;
         private Mock<DiceRoller> mockDiceRoller;
         private Player player;
+        private CardDealer dealer;
         private JailWarden jailWarden;
 
         [SetUp]
         public void Setup()
         {
             game = new Game(4);
+            dealer = game.GetCardDealer();
             jailWarden = game.GetJailWarden();
             mockDiceRoller = new Mock<DiceRoller>();
             player = game.players[0];
@@ -164,6 +167,14 @@ namespace UnitTestProject1
             Assert.AreEqual(16, player.Position);
         }
 
+        [Test]
+        public void WhenPlayerIsInJailAndUsesCard_HeGetsOutOfJail()
+        {
+            dealer.SetOwnerOfChanceJailCard(player);
+            jailWarden.MovePlayerToJail(player);
+            Assert.True(jailWarden.IsInJail(player));
+            game.UseGetOutOfJailFreeCard(player);
+            Assert.False(jailWarden.IsInJail(player));
+        }
     }
-    
 }
