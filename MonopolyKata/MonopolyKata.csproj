@@ -30,6 +30,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Extras.Moq">
+      <HintPath>..\packages\Autofac.Extras.Moq.3.0.2\lib\net40\Autofac.Extras.Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.2.1502.0911\lib\net40\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
     </Reference>
@@ -44,11 +53,19 @@
   <ItemGroup>
     <Compile Include="Banker.cs" />
     <Compile Include="Board.cs" />
+    <Compile Include="Cards\Card.cs" />
+    <Compile Include="Cards\CardDealer.cs" />
+    <Compile Include="Cards\MovePlayerCard.cs" />
+    <Compile Include="Cards\MovePlayerNumberOfSpacesCard.cs" />
+    <Compile Include="Cards\PayPlayerMoneyCard.cs" />
+    <Compile Include="Cards\SendPlayerToJailCard.cs" />
+    <Compile Include="Cards\TakeMoneyFromPlayerCard.cs" />
     <Compile Include="Color.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="IOC\PropertyModule.cs" />
     <Compile Include="DiceRoller.cs" />
     <Compile Include="JailWarden.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="PropertySquares\Properties\MonopolizableProperty.cs" />
     <Compile Include="PropertySquares\Rent\RentStrategyMonopolizable.cs" />
     <Compile Include="PropertySquares\Rent\RentStrategyUtility.cs" />

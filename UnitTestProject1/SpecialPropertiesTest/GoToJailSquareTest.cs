@@ -26,7 +26,7 @@ namespace UnitTestProject1
         [Test]
         public void WhenConstructorFires_GoToJailIsInitializedCorrectly()
         {
-            Assert.AreEqual("GoToJail", gtj.Name);
+            Assert.AreEqual("Go To Jail", gtj.Name);
         }
 
         [Test]

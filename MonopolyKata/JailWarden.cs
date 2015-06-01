@@ -17,7 +17,7 @@ namespace MonopolyKata
             positionOfJail = position;
         }
 
-        public void MovePlayerToJail(Player player)
+        public virtual void MovePlayerToJail(Player player)
         {
             player.Position = positionOfJail;
             timeInJail[player] = 1;

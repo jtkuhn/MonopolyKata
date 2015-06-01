@@ -4,7 +4,7 @@
     {
         private JailWarden warden;
 
-        public GoToJailSquare(JailWarden warden) : base("GoToJail")
+        public GoToJailSquare(JailWarden warden) : base("Go To Jail")
         {
             this.warden = warden;
         }

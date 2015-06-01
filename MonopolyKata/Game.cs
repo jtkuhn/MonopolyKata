@@ -80,6 +80,21 @@ namespace MonopolyKata
             }
         }
 
+        public void Pay50ToGetOutOfJail(Player player)
+        {
+            if (jailWarden.IsInJail(player))
+            {
+                banker.TakeMoneyFromPlayer(player, 50);
+                jailWarden.GetsOutOfJail(player);
+            }
+        }
+
+        public void SetDiceRoller(DiceRoller diceRoller)
+        {
+            this.diceRoller = diceRoller;
+        }
+
+
         private void RandomlyOrderPlayers(Board board)
         {
             for (int j = 0; j < players.Length; j++)
@@ -102,20 +117,6 @@ namespace MonopolyKata
                 list[k] = list[n];
                 list[n] = value;
             }
-        }
-
-        public void Pay50ToGetOutOfJail(Player player)
-        {
-            if (jailWarden.IsInJail(player))
-            {
-                banker.TakeMoneyFromPlayer(player, 50);
-                jailWarden.GetsOutOfJail(player);
-            }
-        }
-
-        public void SetDiceRoller(DiceRoller diceRoller)
-        {
-            this.diceRoller = diceRoller;
         }
 
         public JailWarden GetJailWarden()

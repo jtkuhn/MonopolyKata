@@ -35,6 +35,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Extras.Moq">
+      <HintPath>..\packages\Autofac.Extras.Moq.3.0.2\lib\net40\Autofac.Extras.Moq.dll</HintPath>
+    </Reference>
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.2.1502.0911\lib\net40\Moq.dll</HintPath>
     </Reference>
@@ -78,6 +84,12 @@
   <ItemGroup>
     <Compile Include="BankerTest.cs" />
     <Compile Include="BoardTest.cs" />
+    <Compile Include="CardsTests\CardDealerTest.cs" />
+    <Compile Include="CardsTests\MovePlayerCardTests.cs" />
+    <Compile Include="CardsTests\MovePlayerNumberOfSpacesCardTests.cs" />
+    <Compile Include="CardsTests\PayPlayerMoneyCardTests.cs" />
+    <Compile Include="CardsTests\SendPlayerToJailCardTests.cs" />
+    <Compile Include="CardsTests\TakeMoneyFromPlayerCardTests.cs" />
     <Compile Include="DiceRollerTest.cs" />
     <Compile Include="JailWardenTest.cs" />
     <Compile Include="SpecialPropertiesTest\RailroadSquareTest.cs" />
@@ -96,6 +108,7 @@
     <Compile Include="SpecialPropertiesTest\UtilitySquareTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +116,9 @@
       <Project>{90dfc86d-9880-4f2a-91e8-e42468cf418c}</Project>
       <Name>MonopolyKata</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="IOC\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using MonopolyKata.PropertySquares;
 using MonopolyKata.PropertySquares.Properties;
@@ -75,13 +76,22 @@ namespace MonopolyKata
             return count <= 0;
         }
 
-        public void MovePlayer(Player player, int distance)
+        public virtual void MovePlayer(Player player, int distance)
         {
             for (int i = 1; i < distance; i++)
             {
                 PlayerPassesBy(player, player.Position + i);
             }
             player.Position = PlayerLandsOn(player, player.Position + distance);
+        }
+
+        public int GetIndexOf(String name)
+        {
+            for (int i = 0; i < Size; i++)
+            {
+                if (name == board[i].Name) return i;
+            }
+            return -1;
         }
     }
 }

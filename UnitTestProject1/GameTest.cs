@@ -26,7 +26,7 @@ namespace UnitTestProject1
         public void Board_IsInitializedCorrectly()
         {
             Assert.AreEqual("Go", game.Board.GetSquareAt(0).Name);
-            Assert.AreEqual("GoToJail", game.Board.GetSquareAt(30).Name);
+            Assert.AreEqual("Go To Jail", game.Board.GetSquareAt(30).Name);
         }
 
         [Test]

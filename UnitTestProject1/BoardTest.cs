@@ -40,5 +40,14 @@ namespace UnitTestProject1
             Assert.True(board.IsPartOfMonopoly((MonopolizableProperty) board.GetSquareAt(1)));
             Assert.True(board.IsPartOfMonopoly((MonopolizableProperty) board.GetSquareAt(3)));
         }
+
+        [Test]
+        public void WhenGetIndexOfIsCalled_FindsRightPropertyAndIndex()
+        {
+            Assert.AreEqual(10, board.GetIndexOf("Just Visiting"));
+            Assert.AreEqual(5, board.GetIndexOf("Reading Railroad"));
+            Assert.AreEqual(-1, board.GetIndexOf("Go Directly To Jail")); //not the right name
+            Assert.AreEqual(30, board.GetIndexOf("Go To Jail"));
+        }
     }
 }

@@ -6,7 +6,7 @@ namespace MonopolyKata
     {
         public String Name { get; set; }
         public int Money { get; set; }
-        public int Position { get; set; }
+        public virtual int Position { get; set; }
 
         public Player(string name)
         {
