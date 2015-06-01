@@ -92,6 +92,7 @@
     <Compile Include="CardsTests\TakeMoneyFromPlayerCardTests.cs" />
     <Compile Include="DiceRollerTest.cs" />
     <Compile Include="JailWardenTest.cs" />
+    <Compile Include="SpecialPropertiesTest\ChanceSquareTest.cs" />
     <Compile Include="SpecialPropertiesTest\RailroadSquareTest.cs" />
     <Compile Include="SpecialPropertiesTest\GoToJailSquareTest.cs" />
     <Compile Include="PlayerTest.cs" />

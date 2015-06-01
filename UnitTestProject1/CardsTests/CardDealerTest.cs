@@ -18,19 +18,19 @@ namespace UnitTestProject1
         public void Setup()
         {
             banker = new Banker();
-            realtor = new Realtor();
             jailWarden = new JailWarden();
             board = new Board(realtor, jailWarden, banker, new DiceRoller());
-            dealer = new CardDealer(banker, jailWarden, realtor, board);
+            dealer = new CardDealer(banker, jailWarden, board);
             
         }
 
         [Test]
-        public void InitializeCards_CreatesAllTheCardsToUse()
+        public void InitializingADealer_CreatesCardsToUse()
         {
-            dealer.InitializeCards();
-            Assert.NotNull(dealer.DrawNextChanceCard(new Player("Bob"))); 
-            Assert.NotNull(dealer.DrawNextCommunityChestCard(new Player("Bob")));
+            Assert.NotNull(dealer.DrawNextChanceCard()); 
+            Assert.NotNull(dealer.DrawNextCommunityChestCard());
         }
+
+
     }
 }

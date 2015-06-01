@@ -11,7 +11,7 @@ namespace MonopolyKata.Cards
         private List<Card> chanceCards;
         private List<Card> communityChestCards; 
 
-        public CardDealer(Banker banker, JailWarden jailWarden, Realtor realtor, Board board)
+        public CardDealer(Banker banker, JailWarden jailWarden, Board board)
         {
             this.banker = banker;
             this.jailWarden = jailWarden;
@@ -20,34 +20,23 @@ namespace MonopolyKata.Cards
             communityChestCards = new List<Card>();
 
             InitializeCards();
-
         }
 
-        public Card DrawNextChanceCard(Player player)
+        public virtual Card DrawNextChanceCard()
         {
             Card cardToRemove = chanceCards[0];
             chanceCards.RemoveAt(0);
             return cardToRemove;
         }
 
-        public Card DrawNextCommunityChestCard(Player player)
+        public Card DrawNextCommunityChestCard()
         {
             Card cardToRemove = communityChestCards[0];
             communityChestCards.RemoveAt(0);
             return cardToRemove;
         }
 
-        public void PutChanceCardBackInPile(Card card)
-        {
-            chanceCards.Add(card);
-        }
-
-        public void PutCommunityChestCardBackInPile(Card card)
-        {
-            communityChestCards.Add(card);
-        }
-
-        public void AddCardToChancePile(Card card)
+        public virtual void AddCardToChancePile(Card card)
         {
             chanceCards.Add(card);
         }
@@ -57,7 +46,7 @@ namespace MonopolyKata.Cards
             communityChestCards.Add(card);
         }
 
-        public void InitializeCards()
+        private void InitializeCards()
         {
             //For all the cards in the chance pile
             String[] chanceMoveCardNames = {"Advance to Go: Collect 200 Dollars", "Advance to Illinois Avenue", "Advance to St. Charles Place", "Take a Trip to Reading Railroad", "Take a Walk on the Boardwalk"};
