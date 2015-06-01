@@ -14,7 +14,8 @@ namespace MonopolyKata.PropertySquares
         {
             Card card = dealer.DrawNextChanceCard();
             card.IsDrawn(player);
-            dealer.AddCardToChancePile(card);
+            if (card.GetType() == typeof (GetOutOfJailCard)) dealer.SetOwnerOfChanceJailCard(player);
+            else dealer.AddCardToChancePile(card);
         }
     }
 }

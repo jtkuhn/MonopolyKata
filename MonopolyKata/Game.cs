@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using MonopolyKata.Cards;
 using MonopolyKata.PropertySquares.Rent;
 
 namespace MonopolyKata
@@ -77,6 +78,14 @@ namespace MonopolyKata
                     jailWarden.GetsOutOfJail(player);
                     board.MovePlayer(player, diceRoller.GetLastRoll());
                 }
+            }
+        }
+
+        public void UseGetOutOfJailFreeCard(Player player)
+        {
+            if (jailWarden.IsInJail(player))
+            {
+                //
             }
         }
 

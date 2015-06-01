@@ -55,6 +55,7 @@
     <Compile Include="Board.cs" />
     <Compile Include="Cards\Card.cs" />
     <Compile Include="Cards\CardDealer.cs" />
+    <Compile Include="Cards\GetOutOfJailCard.cs" />
     <Compile Include="Cards\MovePlayerCard.cs" />
     <Compile Include="Cards\MovePlayerNumberOfSpacesCard.cs" />
     <Compile Include="Cards\PayPlayerMoneyCard.cs" />

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 
 namespace MonopolyKata.Cards
 {
@@ -9,7 +10,11 @@ namespace MonopolyKata.Cards
         private JailWarden jailWarden;
         private Board board;
         private List<Card> chanceCards;
-        private List<Card> communityChestCards; 
+        private List<Card> communityChestCards;
+        public int chanceSize { get { return chanceCards.Count; } }
+        public int communityChestSize { get { return communityChestCards.Count; } }
+        private Dictionary<String, Player> getOutOfJailDictionary; 
+
 
         public CardDealer(Banker banker, JailWarden jailWarden, Board board)
         {
@@ -18,6 +23,7 @@ namespace MonopolyKata.Cards
             this.board = board;
             chanceCards = new List<Card>();
             communityChestCards = new List<Card>();
+            getOutOfJailDictionary = new Dictionary<String, Player>();
 
             InitializeCards();
         }
@@ -27,6 +33,43 @@ namespace MonopolyKata.Cards
             Card cardToRemove = chanceCards[0];
             chanceCards.RemoveAt(0);
             return cardToRemove;
+        }
+
+        public void SetOwnerOfChanceJailCard(Player player)
+        {
+            getOutOfJailDictionary["chance"] = player;
+        }
+
+        public void SetOwnerOfCommunityChestJailCard(Player player)
+        {
+            getOutOfJailDictionary["community chest"] = player;
+        }
+
+        public bool OwnsAGetOutOfJailCard(Player player)
+        {
+            return getOutOfJailDictionary.ContainsValue(player);
+        }
+
+        public void UsesAGetOutOfJailCard(Player player)
+        {
+            if (getOutOfJailDictionary.ContainsKey("community chest"))
+            {
+                if (getOutOfJailDictionary["community chest"] == player)
+                {
+                    getOutOfJailDictionary["community chest"] = null;
+                    AddCardToCommunityChestPile(new GetOutOfJailCard());
+                }
+                else
+                {
+                    getOutOfJailDictionary["chance"] = null;
+                    AddCardToChancePile(new GetOutOfJailCard());
+                }
+            }
+            else
+            {
+                getOutOfJailDictionary["chance"] = null;
+                AddCardToChancePile(new GetOutOfJailCard());
+            }
         }
 
         public Card DrawNextCommunityChestCard()
