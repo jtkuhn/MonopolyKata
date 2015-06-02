@@ -57,6 +57,8 @@ namespace UnitTestProject1
         {
             Assert.AreEqual(0, player1.Position);
             board.MovePlayer(player1, 1);
+            player1.Money += 60; //account for him just buying Mediterranean
+
             board.MovePlayer(player1, -3); //moves him backwards past go and onto luxury tax
             Assert.AreEqual(1425, player1.Money); //does not collect $200 and does pay $75 fine
 

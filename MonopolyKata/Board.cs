@@ -30,21 +30,26 @@ namespace MonopolyKata
                 board[i] = new Square("Property " + i);
             }
             InitializeSquare(0, new GoSquare(banker));
-            InitializeSquare(1, new MonopolizableProperty(rsFactory.CreateMonopolizableStrategy(this), banker, "Mediterranean Avenue", realtor, Color.Brown));
+            InitializeSquare(1, new MonopolizableProperty(rsFactory.CreateMonopolizableStrategy(this), banker, "Mediterranean Avenue", realtor, Color.Brown, 60, 2));
             InitializeSquare(2, new CommunityChestCardSquare(lazyLoadDealer));
-            InitializeSquare(3, new MonopolizableProperty(rsFactory.CreateMonopolizableStrategy(this), banker, "Baltic Avenue", realtor, Color.Brown));
+            InitializeSquare(3, new MonopolizableProperty(rsFactory.CreateMonopolizableStrategy(this), banker, "Baltic Avenue", realtor, Color.Brown, 60, 4));
             InitializeSquare(4, new IncomeTaxSquare(banker));
             InitializeSquare(5, new RailroadSquare(rsFactory.CreateRailroadStrategy(), banker, "Reading Railroad", realtor));
             InitializeSquare(6, new MonopolizableProperty(rsFactory.CreateMonopolizableStrategy(this), banker, "Oriental Avenue", realtor, Color.LightBlue));
+            InitializeSquare(7, new ChanceCardSquare(lazyLoadDealer));
             InitializeSquare(8, new MonopolizableProperty(rsFactory.CreateMonopolizableStrategy(this), banker, "Vermont Avenue", realtor, Color.LightBlue));
             InitializeSquare(9, new MonopolizableProperty(rsFactory.CreateMonopolizableStrategy(this), banker, "Connecticut Avenue", realtor, Color.LightBlue));
             InitializeSquare(10, new JailSquare());
             InitializeSquare(12, new UtilitySquare(rsFactory.CreateUtilityStrategy(diceRoller), banker, "Electric Company", realtor));
             InitializeSquare(15, new RailroadSquare(rsFactory.CreateRailroadStrategy(), banker, "Pennsylvania Railroad", realtor));
+            InitializeSquare(17, new CommunityChestCardSquare(lazyLoadDealer));
+            InitializeSquare(22, new ChanceCardSquare(lazyLoadDealer));
             InitializeSquare(25, new RailroadSquare(rsFactory.CreateRailroadStrategy(), banker, "B & O Railroad", realtor));
             InitializeSquare(28, new UtilitySquare(rsFactory.CreateUtilityStrategy(diceRoller), banker, "Water Works", realtor));
             InitializeSquare(30, new GoToJailSquare(jailWarden));
+            InitializeSquare(33, new CommunityChestCardSquare(lazyLoadDealer));
             InitializeSquare(35, new RailroadSquare(rsFactory.CreateRailroadStrategy(), banker, "Short Line", realtor));
+            InitializeSquare(36, new ChanceCardSquare(lazyLoadDealer));
             InitializeSquare(38, new LuxuryTaxSquare(banker));
         }
 

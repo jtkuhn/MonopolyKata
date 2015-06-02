@@ -22,7 +22,7 @@ namespace UnitTestProject1.CardsTests
         }
 
         [Test]
-        public void WhenTakeMoneyFromPlayerCardIsDrawn_BankerTakesMoneyFromPlayer()
+        public void WhenSendPlayerToJailCardIsPulled_PlayerIsSentToJail()
         {
             mockJailWarden.Setup(x => x.MovePlayerToJail(mockPlayer.Object)).Verifiable();
             testCard.IsDrawn(mockPlayer.Object);
