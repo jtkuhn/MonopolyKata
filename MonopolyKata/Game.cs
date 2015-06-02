@@ -113,7 +113,16 @@ namespace MonopolyKata
             this.diceRoller = diceRoller;
         }
 
+        public JailWarden GetJailWarden()
+        {
+            return jailWarden;
+        }
 
+        public LazyLoadCardDealer GetCardDealer()
+        {
+            return lazyLoadDealer;
+        }
+        
         private void RandomlyOrderPlayers(Board board)
         {
             for (int j = 0; j < players.Length; j++)
@@ -136,16 +145,6 @@ namespace MonopolyKata
                 list[k] = list[n];
                 list[n] = value;
             }
-        }
-
-        public JailWarden GetJailWarden()
-        {
-            return jailWarden;
-        }
-
-        public LazyLoadCardDealer GetCardDealer()
-        {
-            return lazyLoadDealer;
         }
     }
 }
