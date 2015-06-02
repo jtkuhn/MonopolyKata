@@ -35,6 +35,13 @@ namespace MonopolyKata.Cards
             return cardToRemove;
         }
 
+        public Card DrawNextCommunityChestCard()
+        {
+            Card cardToRemove = communityChestCards[0];
+            communityChestCards.RemoveAt(0);
+            return cardToRemove;
+        }
+
         public void SetOwnerOfChanceJailCard(Player player)
         {
             getOutOfJailDictionary["chance"] = player;
@@ -70,13 +77,6 @@ namespace MonopolyKata.Cards
                 getOutOfJailDictionary["chance"] = null;
                 AddCardToChancePile(new GetOutOfJailCard());
             }
-        }
-
-        public Card DrawNextCommunityChestCard()
-        {
-            Card cardToRemove = communityChestCards[0];
-            communityChestCards.RemoveAt(0);
-            return cardToRemove;
         }
 
         public virtual void AddCardToChancePile(Card card)

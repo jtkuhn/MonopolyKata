@@ -10,9 +10,9 @@ namespace UnitTestProject1.SpecialPropertiesTest
     [TestFixture]
     public class ChanceSquareTest
     {
-        private Mock<CardDealer> mockDealer;
+        private Mock<LazyLoadCardDealer> mockDealer;
         private ChanceCardSquare chanceSquare;
-        private CardDealer dealer;
+        private LazyLoadCardDealer dealer;
 
         [SetUp]
         public void Setup()
@@ -20,8 +20,7 @@ namespace UnitTestProject1.SpecialPropertiesTest
             
             Banker banker = new Banker();
             JailWarden jailWarden = new JailWarden();
-            Board board = new Board(new Realtor(), jailWarden, banker, dealer, new DiceRoller());
-            mockDealer = new Mock<CardDealer>(banker, jailWarden, board);
+            mockDealer = new Mock<LazyLoadCardDealer>(banker, jailWarden);
             chanceSquare = new ChanceCardSquare(mockDealer.Object);
         }
 

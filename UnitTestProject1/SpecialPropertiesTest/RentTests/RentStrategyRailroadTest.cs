@@ -9,14 +9,11 @@ namespace MonopolyKata
     {
         private IRentStrategy rentStrategy;
         private Mock<Realtor> mockRealtor;
-        private Board board;
-        private CardDealer dealer; 
 
         [SetUp]
         public void Setup()
         {
             mockRealtor = new Mock<Realtor>();
-            board = new Board(mockRealtor.Object, new JailWarden(), new Banker(), dealer, new DiceRoller());
             rentStrategy = new RentStrategyRailroad(mockRealtor.Object);
         }
 

@@ -11,20 +11,18 @@ namespace MonopolyKata
     {
         private Square[] board;
         public int Size { get; set; }
-        private RentStrategyFactory rsFactory;
         private Realtor realtor;
-        private JailWarden jailWarden;
-        private Banker banker;
-        private CardDealer dealer;
 
-        public Board(Realtor realtor, JailWarden warden, Banker banker, CardDealer dealer, DiceRoller diceRoller)
+        public Board(Realtor realtor, JailWarden warden, Banker banker, LazyLoadCardDealer lazyLoadDealer, DiceRoller diceRoller)
         {
-            this.dealer = dealer;
-            this.banker = banker;
+            JailWarden jailWarden;
             jailWarden = warden;
             jailWarden.SetPositionOfJail(10);
             this.realtor = realtor;
-            rsFactory = new RentStrategyFactory(realtor);
+            var rsFactory = new RentStrategyFactory(realtor);
+
+            lazyLoadDealer.Board = this;
+
             Size = 40;
             board = new Square[Size];
             for (int i = 0; i < Size; i++)
@@ -33,6 +31,7 @@ namespace MonopolyKata
             }
             InitializeSquare(0, new GoSquare(banker));
             InitializeSquare(1, new MonopolizableProperty(rsFactory.CreateMonopolizableStrategy(this), banker, "Mediterranean Avenue", realtor, Color.Brown));
+            InitializeSquare(2, new CommunityChestCardSquare(lazyLoadDealer));
             InitializeSquare(3, new MonopolizableProperty(rsFactory.CreateMonopolizableStrategy(this), banker, "Baltic Avenue", realtor, Color.Brown));
             InitializeSquare(4, new IncomeTaxSquare(banker));
             InitializeSquare(5, new RailroadSquare(rsFactory.CreateRailroadStrategy(), banker, "Reading Railroad", realtor));

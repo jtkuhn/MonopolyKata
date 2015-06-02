@@ -12,11 +12,12 @@ namespace UnitTestProject1.CardsTests
         private Mock<Board> mockBoard;
         private Mock<Player> mockPlayer;
         private Card testCard;
-        private CardDealer dealer;
+        private LazyLoadCardDealer dealer;
 
         [SetUp]
         public void Setup()
         {
+            dealer = new LazyLoadCardDealer(new Banker(), new JailWarden());
             mockBoard = new Mock<Board>(new Realtor(), new JailWarden(), new Banker(), dealer, new DiceRoller());
             mockPlayer = new Mock<Player>("Jim");
 

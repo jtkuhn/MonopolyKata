@@ -12,11 +12,12 @@ namespace UnitTestProject1
         private Board board;
         private Player player1;
         private Player player2;
-        private CardDealer dealer;
+        private LazyLoadCardDealer dealer;
 
         [SetUp]
         public void Setup()
         {
+            dealer = new LazyLoadCardDealer(new Banker(), new JailWarden());
             board = new Board(new Realtor(), new JailWarden(), new Banker(), dealer, new DiceRoller());
             player1 = new Player("Hi");
             player2 = new Player("hello");

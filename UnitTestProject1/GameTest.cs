@@ -12,7 +12,7 @@ namespace UnitTestProject1
         private Game game;
         private Mock<DiceRoller> mockDiceRoller;
         private Player player;
-        private CardDealer dealer;
+        private LazyLoadCardDealer dealer;
         private JailWarden jailWarden;
 
         [SetUp]

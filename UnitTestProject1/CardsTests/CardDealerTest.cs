@@ -8,7 +8,7 @@ namespace UnitTestProject1
     [TestFixture]
     public class CardDealerTest
     {
-        private CardDealer dealer;
+        private LazyLoadCardDealer dealer;
         private Banker banker;
         private Realtor realtor;
         private JailWarden jailWarden;
@@ -19,8 +19,8 @@ namespace UnitTestProject1
         {
             banker = new Banker();
             jailWarden = new JailWarden();
+            dealer = new LazyLoadCardDealer(banker, jailWarden);
             board = new Board(realtor, jailWarden, banker, dealer, new DiceRoller());
-            dealer = new CardDealer(banker, jailWarden, board);
         }
 
         [Test]

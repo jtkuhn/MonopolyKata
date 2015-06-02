@@ -14,13 +14,14 @@ namespace UnitTestProject1
         private Property prop;
         private Player player1;
         private Banker banker;
-        private CardDealer dealer;
+        private LazyLoadCardDealer dealer;
 
         [SetUp]
         public void Setup()
         {
             banker = new Banker();
             realtor = new Realtor();
+            dealer = new LazyLoadCardDealer(banker, new JailWarden());
             board = new Board(realtor, new JailWarden(), banker, dealer, new DiceRoller());
             prop = new Property(new RentStrategyMonopolizable(board), banker, "hi", realtor);
             player1 = new Player("Bob");

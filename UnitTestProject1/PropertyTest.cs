@@ -1,4 +1,5 @@
-﻿using MonopolyKata;
+﻿using System;
+using MonopolyKata;
 using MonopolyKata.Cards;
 using MonopolyKata.PropertySquares;
 using MonopolyKata.PropertySquares.Properties;
@@ -17,11 +18,12 @@ namespace UnitTestProject1
         private Mock<Board> board;
         private IRentStrategy rentStrategy;
         private Realtor realtor;
-        private CardDealer dealer;
+        private LazyLoadCardDealer dealer;
 
         [SetUp]
         public void Init()
         {
+            dealer = new LazyLoadCardDealer(new Banker(), new JailWarden());
             realtor = new Realtor();
             board = new Mock<Board>(realtor, new JailWarden(), new Banker(), dealer, new DiceRoller());
             player1 = new Player("One");

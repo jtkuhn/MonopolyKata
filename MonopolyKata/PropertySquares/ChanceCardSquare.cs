@@ -4,9 +4,9 @@ namespace MonopolyKata.PropertySquares
 {
     public class ChanceCardSquare : Square
     {
-        private CardDealer dealer; 
+        private LazyLoadCardDealer dealer; 
 
-        public ChanceCardSquare(CardDealer cardDealer) : base("Chance")
+        public ChanceCardSquare(LazyLoadCardDealer cardDealer) : base("Chance")
         {
             dealer = cardDealer;
         }

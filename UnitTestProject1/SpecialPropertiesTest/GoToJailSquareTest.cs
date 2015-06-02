@@ -13,11 +13,12 @@ namespace UnitTestProject1
         private GoToJailSquare gtj;
         private Board board;
         private Player player1;
-        private CardDealer dealer;
+        private LazyLoadCardDealer dealer;
 
         [SetUp]
         public void Init()
         {
+            dealer = new LazyLoadCardDealer(new Banker(), jailWarden);
             board = new Board(new Realtor(), new JailWarden(), new Banker(),  dealer, new DiceRoller());
             player1 = new Player("t");
             jailWarden = new JailWarden();

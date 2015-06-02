@@ -13,12 +13,13 @@ namespace UnitTestProject1
         private Player player1;
         private Board board;
         private Realtor realtor;
-        private CardDealer dealer;
+        private LazyLoadCardDealer dealer;
 
         [SetUp]
-        public void Init()
+        public void Setup()
         {
             realtor = new Realtor();
+            dealer = new LazyLoadCardDealer(new Banker(), new JailWarden());
             board = new Board(realtor, new JailWarden(), new Banker(), dealer, new DiceRoller());
             player1 = new Player("Bob");
         }
@@ -31,20 +32,21 @@ namespace UnitTestProject1
         }
 
         [Test]
+        public void PlayerMove_WrapsAroundAt40()
+        {
+            board.MovePlayer(player1, 2);
+            board.MovePlayer(player1, 33);
+            board.MovePlayer(player1, 7);
+            Assert.AreEqual(2, player1.Position);
+        }
+
+        [Test]
         public void PlayerMove_IncrementsPositionCorrectly()
         {
             board.MovePlayer(player1, 2);
             board.MovePlayer(player1, 7);
             board.MovePlayer(player1, 5);
             Assert.AreEqual(14, player1.Position);
-        }
-
-        [Test]
-        public void PlayerMove_WrapsAroundAt40()
-        {
-            board.MovePlayer(player1, 35);
-            board.MovePlayer(player1, 7);
-            Assert.AreEqual(2, player1.Position);
         }
 
         [Test]
